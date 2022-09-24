@@ -1,0 +1,7 @@
+{
+  "name": "health-logger",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
