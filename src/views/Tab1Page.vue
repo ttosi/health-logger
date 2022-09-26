@@ -2,28 +2,312 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>Weights</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
+    <div class="h-2/3">
+      <div class="flex justify-center items-center h-full">
+        <div v-if="!activeWorkout">
+          <ion-button expand="full" size="large" class="" @click="newWorkout">
+            Start New Workout
+          </ion-button>
+        </div>
+        <div
+          v-else
+          class="grid grid-cols-3 gap-3 w-full m-5 text-3xl font-extrabold">
+          <div class="col-span-3 text-center font-medium text-sm mb-0 pb-0">
+            Working out on
+            {{
+              useDateFormat(activeWorkout.startDate, "M/DD/YYYY (ddd)").value
+            }}
+          </div>
+          <div class="col-span-3 text-center border">
+            <ion-select
+              v-model="currentExercise"
+              interface="action-sheet"
+              placeholder="Exercise"
+              class="bg-blue-500 text-white font-normal"
+              cancelText="Cancel">
+              <ion-select-option
+                v-for="exercise in exercises"
+                :key="exercise.value"
+                :value="exercise.value">
+                {{ exercise.text }}
+              </ion-select-option>
+              <ion-select-option value="run">Run</ion-select-option>
+            </ion-select>
+          </div>
+          <div
+            v-if="currentExercise !== 'run'"
+            class="grid grid-cols-3 gap-5 col-span-3 h-20">
+            <div
+              class="justify-center items-center flex border-gray-300 border">
+              <ion-select
+                v-model="currentWeights[0]"
+                interface="action-sheet"
+                cancelText="Cancel"
+                class="pr-3">
+                <ion-select-option
+                  v-for="weight in weights"
+                  :key="weight"
+                  :value="weight">
+                  {{ weight }}
+                </ion-select-option>
+              </ion-select>
+            </div>
+            <div
+              class="justify-center items-center flex border-gray-300 border">
+              <ion-select
+                v-model="currentWeights[1]"
+                interface="action-sheet"
+                cancelText="Cancel"
+                class="pr-3">
+                <ion-select-option
+                  v-for="weight in weights"
+                  :key="weight"
+                  :value="weight">
+                  {{ weight }}
+                </ion-select-option>
+              </ion-select>
+            </div>
+            <div
+              class="justify-center items-center flex border-gray-300 border">
+              <ion-select
+                v-model="currentWeights[2]"
+                interface="action-sheet"
+                cancelText="Cancel"
+                class="pr-3">
+                <ion-select-option
+                  v-for="weight in weights"
+                  :key="weight"
+                  :value="weight">
+                  {{ weight }}
+                </ion-select-option>
+              </ion-select>
+            </div>
+          </div>
+          <div v-else class="col-span-3">
+            <div class="grid grid-cols-2 gap-3 text-center font-normal text-lg">
+              <div>
+                <ion-input
+                  v-model="activeWorkout.run.duration"
+                  type="number"
+                  placeholder="Duration"
+                  class="border" />
+              </div>
+              <div>
+                <ion-input
+                  v-model="activeWorkout.run.distance"
+                  type="number"
+                  placeholder="Distance"
+                  class="border" />
+              </div>
+              <div>
+                <ion-input
+                  v-model="activeWorkout.run.pace"
+                  type="number"
+                  placeholder="Pace"
+                  class="border" />
+              </div>
+              <div>
+                <ion-input
+                  v-model="activeWorkout.run.average_pace"
+                  type="number"
+                  placeholder="Average Pace"
+                  class="border" />
+              </div>
+            </div>
+          </div>
+          <div class="col-span-3 text-center flex">
+            <ion-button
+              expand="block"
+              size="large"
+              class="w-1/2 mx-2"
+              @click="prevExercise">
+              Prev
+            </ion-button>
+            <ion-button
+              expand="block"
+              size="large"
+              fill="solid"
+              class="w-1/2 mx-2"
+              @click="nextExercise">
+              Next
+            </ion-button>
+          </div>
+          <div class="col-span-3">
+            <ion-button
+              id="open-modal"
+              expand="block"
+              size="large"
+              fill="outline"
+              class="mx-2"
+              @click="modalCtrl.show">
+              Finish
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t-gray-600 border-t h-1/3">
+      <ion-content>
+        <ion-item v-for="(workout, index) in sortedWorkouts" :key="index">
+          <ion-label class="font-thin">
+            {{ useDateFormat(new Date(workout.startDate), "dddd").value }},
+            {{ useTimeAgo(new Date(workout.startDate)).value }}
+            for
+            <span>
+              {{
+                useDateFormat(
+                  new Date(workout.endDate).getTime() -
+                    new Date(workout.startDate).getTime(),
+                  "m"
+                ).value
+              }}
+              minutes
+            </span>
+          </ion-label>
+        </ion-item>
+      </ion-content>
+    </div>
+    <ion-modal ref="modal" trigger="open-modal">
+      <ion-header>
         <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
+          <ion-buttons slot="start">
+            <ion-button @click="modalCtrl.cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Complete workout?</ion-title>
+          <ion-buttons slot="end">
+            <ion-button :strong="true" @click="modalCtrl.confirm()">
+              Save
+            </ion-button>
+          </ion-buttons>
         </ion-toolbar>
       </ion-header>
-    
-      <ExploreContainer name="Tab 1 page" />
-    </ion-content>
+      <ion-content class="ion-padding">
+        workout duration, avg for each weight
+      </ion-content>
+    </ion-modal>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+<script lang="ts" setup>
+import { ref, reactive } from "vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonButton,
+  IonButtons,
+  IonInput,
+  IonSelect,
+  IonSelectOption,
+  IonModal,
+} from "@ionic/vue";
+import { computed, toRaw } from "@vue/reactivity";
+import { useDateFormat, useTimeAgo } from "@vueuse/core";
+import { exercises, weights, workouts as data } from "@/data";
 
-export default  defineComponent({
-  name: 'Tab1Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+const modal = ref(null);
+const modalCtrl = {
+  show() {
+    modal.value.$el.present();
+  },
+  confirm() {
+    console.log("confirm");
+    modal.value.$el.dismiss();
+    finishExercise();
+  },
+  cancel() {
+    modal.value.$el.dismiss();
+  },
+};
+
+if (!localStorage.getItem("workouts")) {
+  localStorage.setItem("workouts", JSON.stringify(data));
+}
+
+const workouts = reactive(
+  JSON.parse(localStorage.getItem("workouts")).workouts
+);
+const activeWorkout = ref();
+const currentExercise = ref("dip");
+
+const newWorkout = () => {
+  currentExercise.value = "dip";
+  const lastWorkout = sortedWorkouts.value[0];
+  activeWorkout.value = {
+    startDate: new Date().toString(),
+    endDate: null,
+    exercises: toRaw(lastWorkout.exercises),
+    run: {
+      duration: undefined,
+      distance: undefined,
+      pace: undefined,
+      average_pace: undefined,
+    },
+  };
+};
+
+const sortedWorkouts = computed(() => {
+  return workouts.sort(
+    (a: any, b: any) =>
+      new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+  );
+});
+
+const prevExercise = () => {
+  const idx = getExerciseIndex() - 1;
+  if (idx < 0) {
+    currentExercise.value =
+      activeWorkout.value.exercises[
+        activeWorkout.value.exercises.length - 1
+      ].exercise;
+    return;
+  }
+  currentExercise.value = activeWorkout.value.exercises[idx].exercise;
+};
+
+const nextExercise = () => {
+  const idx = getExerciseIndex() + 1;
+  if (idx >= activeWorkout.value.exercises.length) {
+    currentExercise.value = activeWorkout.value.exercises[0].exercise;
+    return;
+  }
+  currentExercise.value = activeWorkout.value.exercises[idx].exercise;
+};
+
+function getExerciseIndex() {
+  return activeWorkout.value.exercises.findIndex(
+    (e) => e.exercise === currentExercise.value
+  );
+}
+
+const finishExercise = () => {
+  activeWorkout.value.endDate = new Date().toString();
+  console.log(activeWorkout);
+  workouts.push(activeWorkout.value);
+  activeWorkout.value = undefined;
+  localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
+};
+
+const currentWeights = computed(() => {
+  const exercise = activeWorkout.value.exercises.find(
+    (e: any) => e.exercise === currentExercise.value
+  );
+  if (!currentExercise.value || !exercise) {
+    return ["-", "-", "-"];
+  }
+  return exercise.weights;
 });
 </script>
+
+<style scoped>
+ion-select::part(icon) {
+  display: none !important;
+}
+</style>

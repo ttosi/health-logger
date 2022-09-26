@@ -1,18 +1,25 @@
 <template>
   <div id="container">
-    <strong>{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- <strong>{{ name }}</strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
+    <!-- <ion-item><ion-label>Basic Item</ion-label></ion-item>
+    <ion-item><ion-label>Basic Item</ion-label></ion-item>
+    <ion-item><ion-label>Basic Item</ion-label></ion-item>
+    <ion-item><ion-label>Basic Item</ion-label></ion-item>
+    <ion-item><ion-label>Basic Item</ion-label></ion-item>
+    <ion-item><ion-label>Basic Item</ion-label></ion-item> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
+// import { IonItem, IonLabel } from "@ionic/vue";
 
 export default defineComponent({
-  name: 'ExploreContainer',
+  name: "ExploreContainer",
   props: {
-    name: String
-  }
+    name: String,
+  },
 });
 </script>
 

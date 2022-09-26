@@ -1,0 +1,10 @@
+[
+  { "value": "dip", "text": "Shoulder Dip" },
+  { "value": "cp", "text": "Chest Press" },
+  { "value": "sr", "text": "Seated Row" },
+  { "value": "sp", "text": "Seated Press" },
+  { "value": "lp", "text": "Lat Pulldown" },
+  { "value": "tp", "text": "Tricep Press" },
+  { "value": "bc", "text": "Bicep Curl" },
+  { "value": "pf", "text": "Pec Fly" }
+]
