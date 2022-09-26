@@ -20,8 +20,9 @@
   </ion-page>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { watchEffect } from "vue";
+import { useRoute } from "vue-router";
 import {
   IonTabBar,
   IonTabButton,
@@ -30,21 +31,16 @@ import {
   IonIcon,
   IonPage,
   IonRouterOutlet,
+  isPlatform,
 } from "@ionic/vue";
 
-export default defineComponent({
-  name: "TabsPage",
-  components: {
-    IonLabel,
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonPage,
-    IonRouterOutlet,
-  },
-  setup() {
-    return {};
-  },
+watchEffect(() => {
+  if (!isPlatform("mobileweb")) {
+    if (useRoute().name === "graphs") {
+      screen.orientation.lock("landscape");
+    } else {
+      screen.orientation.lock("portrait");
+    }
+  }
 });
 </script>

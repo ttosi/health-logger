@@ -11,32 +11,26 @@
           <ion-title size="large">Graphs</ion-title>
         </ion-toolbar>
       </ion-header>
-
-      <ExploreContainer name="Tab 2 page" />
+      Hello graphs tab
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { onMounted } from "vue";
 import {
   IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
+  isPlatform,
 } from "@ionic/vue";
-import ExploreContainer from "@/components/ExploreContainer.vue";
 
-export default defineComponent({
-  name: "Tab2Page",
-  components: {
-    ExploreContainer,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonPage,
-  },
+onMounted(() => {
+  if (!isPlatform("mobileweb")) {
+    screen.orientation.unlock();
+    screen.orientation.lock("landscape");
+  }
 });
 </script>

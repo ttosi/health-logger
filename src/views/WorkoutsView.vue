@@ -161,21 +161,33 @@
     <div class="border-t-gray-600 border-t h-1/3">
       <ion-content>
         <ion-item v-for="(workout, index) in sortedWorkouts" :key="index">
-          <ion-label class="font-thin">
-            {{ useDateFormat(new Date(workout.startDate), "dddd").value }},
-            {{ useTimeAgo(new Date(workout.endDate)).value }}
-            for
-            <span>
-              {{
-                useDateFormat(
-                  new Date(workout.endDate).getTime() -
-                    new Date(workout.startDate).getTime(),
-                  "m"
-                ).value
-              }}
-              minutes
-            </span>
-          </ion-label>
+          <div class="flex w-full">
+            <div class="text-left w-full">
+              <ion-label class="font-thin">
+                {{ useDateFormat(new Date(workout.startDate), "dddd").value }},
+                {{ useTimeAgo(new Date(workout.endDate)).value }}
+                for
+                <span>
+                  {{
+                    useDateFormat(
+                      new Date(workout.endDate).getTime() -
+                        new Date(workout.startDate).getTime(),
+                      "m"
+                    ).value
+                  }}
+                  minutes
+                </span>
+              </ion-label>
+            </div>
+            <div class="text-right w-full">
+              <ion-icon
+                name="close-circle-outline"
+                size="small"
+                color="danger"
+                class="mr-3"
+                @click="deleteWorkout(workout)"></ion-icon>
+            </div>
+          </div>
         </ion-item>
       </ion-content>
     </div>
@@ -318,6 +330,12 @@ const newWorkout = () => {
       average_pace: undefined,
     },
   };
+};
+
+const deleteWorkout = (workout) => {
+  console.log("ww", workout);
+  workouts.splice(workouts.indexOf(workout), 1);
+  localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
 };
 
 const sortedWorkouts = computed(() => {
