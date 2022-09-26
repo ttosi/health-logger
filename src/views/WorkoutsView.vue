@@ -21,6 +21,26 @@
               useDateFormat(activeWorkout.startDate, "M/DD/YYYY (ddd)").value
             }}
           </div>
+          <ion-fab
+            vertical="top"
+            horizontal="end"
+            slot="fixed"
+            class="mt-4 flex">
+            <ion-fab-button
+              id="open-finish-modal"
+              color="success"
+              size="small"
+              @click="modalConfirmFinishMethods.show">
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button
+              id="open-discard-modal"
+              color="danger"
+              size="small"
+              @click="modalConfirmDiscardMethods.show">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
           <div class="col-span-3 text-center border">
             <ion-select
               v-model="currentExercise"
@@ -135,17 +155,6 @@
               Next
             </ion-button>
           </div>
-          <div class="col-span-3">
-            <ion-button
-              id="open-modal"
-              expand="block"
-              size="large"
-              fill="outline"
-              class="mx-2"
-              @click="modalCtrl.show">
-              Finish
-            </ion-button>
-          </div>
         </div>
       </div>
     </div>
@@ -154,7 +163,7 @@
         <ion-item v-for="(workout, index) in sortedWorkouts" :key="index">
           <ion-label class="font-thin">
             {{ useDateFormat(new Date(workout.startDate), "dddd").value }},
-            {{ useTimeAgo(new Date(workout.startDate)).value }}
+            {{ useTimeAgo(new Date(workout.endDate)).value }}
             for
             <span>
               {{
@@ -170,22 +179,62 @@
         </ion-item>
       </ion-content>
     </div>
-    <ion-modal ref="modal" trigger="open-modal">
+    <ion-modal ref="modalConfirmFinish" trigger="open-finish-modal">
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button @click="modalCtrl.cancel()">Cancel</ion-button>
+            <ion-button @click="modalConfirmFinishMethods.cancel()">
+              Cancel
+            </ion-button>
           </ion-buttons>
           <ion-title>Complete workout?</ion-title>
           <ion-buttons slot="end">
-            <ion-button :strong="true" @click="modalCtrl.confirm()">
+            <ion-button
+              :strong="true"
+              color="success"
+              fill="solid"
+              @click="modalConfirmFinishMethods.confirm()">
               Save
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        workout duration, avg for each weight
+        Finish and save the current workout session?
+      </ion-content>
+    </ion-modal>
+    <ion-modal ref="modalConfirmDiscard" trigger="open-discard-modal">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button @click="modalConfirmDiscardMethods.cancel()">
+              Cancel
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Discard workout?</ion-title>
+          <ion-buttons slot="end">
+            <ion-button
+              :strong="true"
+              fill="solid"
+              color="danger"
+              @click="modalConfirmDiscardMethods.confirm()">
+              Discard
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="flex items-center">
+          <div class="mr-2">
+            <ion-icon
+              name="alert-circle-outline"
+              color="danger"
+              size="large"></ion-icon>
+          </div>
+          <div>
+            This will discard the current workout and cannot be undone. Discard?
+          </div>
+        </div>
       </ion-content>
     </ion-modal>
   </ion-page>
@@ -203,27 +252,45 @@ import {
   IonLabel,
   IonButton,
   IonButtons,
+  IonFab,
+  IonFabButton,
   IonInput,
   IonSelect,
   IonSelectOption,
   IonModal,
+  IonIcon,
 } from "@ionic/vue";
 import { computed, toRaw } from "@vue/reactivity";
 import { useDateFormat, useTimeAgo } from "@vueuse/core";
 import { exercises, weights, workouts as data } from "@/data";
 
-const modal = ref(null);
-const modalCtrl = {
+const modalConfirmFinish = ref(null);
+const modalConfirmFinishMethods = {
   show() {
-    modal.value.$el.present();
+    modalConfirmFinish.value.$el.present();
   },
   confirm() {
     console.log("confirm");
-    modal.value.$el.dismiss();
+    modalConfirmFinish.value.$el.dismiss();
     finishExercise();
   },
   cancel() {
-    modal.value.$el.dismiss();
+    modalConfirmFinish.value.$el.dismiss();
+  },
+};
+
+const modalConfirmDiscard = ref(null);
+const modalConfirmDiscardMethods = {
+  show() {
+    modalConfirmDiscard.value.$el.present();
+  },
+  confirm() {
+    console.log("confirm");
+    modalConfirmDiscard.value.$el.dismiss();
+    activeWorkout.value = null;
+  },
+  cancel() {
+    modalConfirmDiscard.value.$el.dismiss();
   },
 };
 
