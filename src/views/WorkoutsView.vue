@@ -27,17 +27,12 @@
             slot="fixed"
             class="mt-4 flex">
             <ion-fab-button
-              id="open-finish-modal"
               color="success"
               size="small"
-              @click="modalConfirmFinishMethods.show">
+              @click="confirmComplete">
               <ion-icon name="checkmark-outline"></ion-icon>
             </ion-fab-button>
-            <ion-fab-button
-              id="open-discard-modal"
-              color="danger"
-              size="small"
-              @click="modalConfirmDiscardMethods.show">
+            <ion-fab-button color="danger" size="small" @click="confirmDiscard">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
@@ -191,64 +186,6 @@
         </ion-item>
       </ion-content>
     </div>
-    <ion-modal ref="modalConfirmFinish" trigger="open-finish-modal">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button @click="modalConfirmFinishMethods.cancel()">
-              Cancel
-            </ion-button>
-          </ion-buttons>
-          <ion-title>Complete workout?</ion-title>
-          <ion-buttons slot="end">
-            <ion-button
-              :strong="true"
-              color="success"
-              fill="solid"
-              @click="modalConfirmFinishMethods.confirm()">
-              Save
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        Finish and save the current workout session?
-      </ion-content>
-    </ion-modal>
-    <ion-modal ref="modalConfirmDiscard" trigger="open-discard-modal">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button @click="modalConfirmDiscardMethods.cancel()">
-              Cancel
-            </ion-button>
-          </ion-buttons>
-          <ion-title>Discard workout?</ion-title>
-          <ion-buttons slot="end">
-            <ion-button
-              :strong="true"
-              fill="solid"
-              color="danger"
-              @click="modalConfirmDiscardMethods.confirm()">
-              Discard
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <div class="flex items-center">
-          <div class="mr-2">
-            <ion-icon
-              name="alert-circle-outline"
-              color="danger"
-              size="large"></ion-icon>
-          </div>
-          <div>
-            This will discard the current workout and cannot be undone. Discard?
-          </div>
-        </div>
-      </ion-content>
-    </ion-modal>
   </ion-page>
 </template>
 
@@ -263,48 +200,17 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonButtons,
   IonFab,
   IonFabButton,
   IonInput,
   IonSelect,
   IonSelectOption,
-  IonModal,
   IonIcon,
 } from "@ionic/vue";
 import { computed, toRaw } from "@vue/reactivity";
 import { useDateFormat, useTimeAgo } from "@vueuse/core";
 import { exercises, weights, workouts as data } from "@/data";
-
-const modalConfirmFinish = ref(null);
-const modalConfirmFinishMethods = {
-  show() {
-    modalConfirmFinish.value.$el.present();
-  },
-  confirm() {
-    console.log("confirm");
-    modalConfirmFinish.value.$el.dismiss();
-    finishExercise();
-  },
-  cancel() {
-    modalConfirmFinish.value.$el.dismiss();
-  },
-};
-
-const modalConfirmDiscard = ref(null);
-const modalConfirmDiscardMethods = {
-  show() {
-    modalConfirmDiscard.value.$el.present();
-  },
-  confirm() {
-    console.log("confirm");
-    modalConfirmDiscard.value.$el.dismiss();
-    activeWorkout.value = null;
-  },
-  cancel() {
-    modalConfirmDiscard.value.$el.dismiss();
-  },
-};
+import { alertController } from "@ionic/core";
 
 if (!localStorage.getItem("workouts")) {
   localStorage.setItem("workouts", JSON.stringify(data));
@@ -313,30 +219,15 @@ if (!localStorage.getItem("workouts")) {
 const workouts = reactive(
   JSON.parse(localStorage.getItem("workouts")).workouts
 );
-const activeWorkout = ref();
+const activeWorkout = ref(null);
 const currentExercise = ref("dip");
 
-const newWorkout = () => {
-  currentExercise.value = "dip";
-  const lastWorkout = sortedWorkouts.value[0];
-  activeWorkout.value = {
-    startDate: new Date().toString(),
-    endDate: null,
-    exercises: toRaw(lastWorkout.exercises),
-    run: {
-      duration: undefined,
-      distance: undefined,
-      pace: undefined,
-      average_pace: undefined,
-    },
-  };
-};
-
-const deleteWorkout = (workout) => {
-  console.log("ww", workout);
-  workouts.splice(workouts.indexOf(workout), 1);
-  localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
-};
+const currentWeights = computed(() => {
+  const exercise = activeWorkout.value.exercises.find(
+    (e: any) => e.exercise === currentExercise.value
+  );
+  return exercise.weights;
+});
 
 const sortedWorkouts = computed(() => {
   return workouts.sort(
@@ -372,23 +263,67 @@ function getExerciseIndex() {
   );
 }
 
-const finishExercise = () => {
+const newWorkout = () => {
+  currentExercise.value = "dip";
+  const lastWorkout = sortedWorkouts.value[0];
+  activeWorkout.value = {
+    startDate: new Date().toString(),
+    endDate: null,
+    exercises: toRaw(lastWorkout.exercises),
+    run: {
+      duration: null,
+      distance: null,
+      pace: null,
+      average_pace: null,
+    },
+  };
+};
+
+const deleteWorkout = (workout) => {
+  workouts.splice(workouts.indexOf(workout), 1);
+  localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
+};
+
+const completeExercise = () => {
   activeWorkout.value.endDate = new Date().toString();
-  console.log(activeWorkout);
   workouts.push(activeWorkout.value);
   activeWorkout.value = undefined;
   localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
 };
 
-const currentWeights = computed(() => {
-  const exercise = activeWorkout.value.exercises.find(
-    (e: any) => e.exercise === currentExercise.value
-  );
-  if (!currentExercise.value || !exercise) {
-    return ["-", "-", "-"];
-  }
-  return exercise.weights;
-});
+const confirmComplete = async () => {
+  const alert = await alertController.create({
+    header: "Complete this workout session?",
+    buttons: [
+      {
+        text: "Complete",
+        role: "confirm",
+        handler() {
+          completeExercise();
+        },
+      },
+      { text: "Cancel", role: "cancel" },
+    ],
+  });
+  await alert.present();
+};
+
+const confirmDiscard = async () => {
+  const alert = await alertController.create({
+    header: "Discard this workout?",
+    buttons: [
+      {
+        text: "Discard",
+        role: "confirm",
+        handler() {
+          activeWorkout.value = null;
+        },
+      },
+      { text: "Cancel", role: "cancel" },
+    ],
+  });
+  await alert.present();
+};
 </script>
 
 <style scoped>
