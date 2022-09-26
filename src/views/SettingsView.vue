@@ -11,7 +11,11 @@
           <ion-title size="large">Setting</ion-title>
         </ion-toolbar>
       </ion-header>
-      Settings
+      <ion-content>
+        <div class="flex w-full justify-center h-full items-center">
+          <ion-icon name="construct-outline" class="text-9xl text-gray-400" />
+        </div>
+      </ion-content>
     </ion-content>
   </ion-page>
 </template>

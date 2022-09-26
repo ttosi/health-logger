@@ -7,6 +7,10 @@
           <ion-icon name="barbell-outline"></ion-icon>
           <ion-label>Workouts</ion-label>
         </ion-tab-button>
+        <ion-tab-button tab="bodyweight" href="/tabs/bodyweight">
+          <ion-icon name="body-outline"></ion-icon>
+          <ion-label>Body Weight</ion-label>
+        </ion-tab-button>
         <ion-tab-button tab="graphs" href="/tabs/graphs">
           <ion-icon name="analytics-outline"></ion-icon>
           <ion-label>Graphs</ion-label>

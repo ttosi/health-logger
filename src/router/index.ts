@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
-import { isPlatform } from "@ionic/vue";
 import TabsView from "@/views/TabsView.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -20,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "workouts",
         name: "workouts",
         component: () => import("@/views/WorkoutsView.vue"),
+      },
+      {
+        path: "bodyweight",
+        name: "bodyWeight",
+        component: () => import("@/views/BodyWeightView.vue"),
       },
       {
         path: "graphs",
