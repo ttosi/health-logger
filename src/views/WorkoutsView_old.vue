@@ -11,6 +11,11 @@
           <ion-button expand="full" size="large" class="" @click="newWorkout">
             Start New Workout
           </ion-button>
+          <!-- <ion-input
+            v-maska="'##:##'"
+            class="border"
+            pattern="[0-9]*"
+            inputmode="numeric" /> -->
         </div>
         <div
           v-else

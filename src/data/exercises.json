@@ -1,17 +1,16 @@
 [
-  { "value": "dip", "type": "weight", "text": "Shoulder Dip" },
-  { "value": "cp", "type": "weight", "text": "Chest Press" },
-  { "value": "sr", "type": "weight", "text": "Seated Row" },
-  { "value": "sp", "type": "weight", "text": "Seated Press" },
-  { "value": "lp", "type": "weight", "text": "Lat Pulldown" },
-  { "value": "tp", "type": "weight", "text": "Tricep Press" },
-  { "value": "bc", "type": "weight", "text": "Bicep Curl" },
-
-  { "value": "isu", "type": "core", "text": "Inclined Situps" },
-  { "value": "kpu", "type": "core", "text": "Knee Pullup" },
-  { "value": "plnk", "type": "core", "text": "Plank" },
-  { "value": "vuh", "type": "core", "text": "V-up Hold" },
-  { "value": "pnk", "type": "core", "text": "Plank Knee Cross" },
-  { "value": "byc", "type": "core", "text": "Bicycle Crunch" },
-  { "value": "spl", "type": "core", "text": "Side Plank" }
+  { "id": "dip", "type": "weight", "inputType": "number", "text": "Shoulder Dip" },
+  { "id": "cp", "type": "weight", "inputType": "number", "text": "Chest Press" },
+  { "id": "sr", "type": "weight", "inputType": "number", "text": "Seated Row" },
+  { "id": "sp", "type": "weight", "inputType": "number", "text": "Seated Press" },
+  { "id": "lp", "type": "weight", "inputType": "number", "text": "Lat Pulldown" },
+  { "id": "tp", "type": "weight", "inputType": "number", "text": "Tricep Press" },
+  { "id": "bc", "type": "weight", "inputType": "number", "text": "Bicep Curl" },
+  { "id": "isu", "type": "core", "inputType": "duration", "text": "Inclined Situps" },
+  { "id": "kpu", "type": "core", "inputType": "duration", "text": "Knee Pullup" },
+  { "id": "plnk","type": "core", "inputType": "duration", "text": "Plank" },
+  { "id": "vuh", "type": "core", "inputType": "duration", "text": "V-up Hold" },
+  { "id": "pnk", "type": "core", "inputType": "duration", "text": "Plank Knee Cross" },
+  { "id": "byc", "type": "core", "inputType": "duration", "text": "Bicycle Crunch" },
+  { "id": "spl", "type": "core", "inputType": "duration", "text": "Side Plank" }
 ]

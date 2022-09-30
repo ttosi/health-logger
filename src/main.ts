@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import { IonicVue } from "@ionic/vue";
+import Maska from "maska";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/vue/css/core.css";
@@ -26,7 +27,7 @@ import "./theme/variables.css";
 /* Tailwind CSS */
 import "../public/assets/tailwind.css";
 
-const app = createApp(App).use(IonicVue).use(router);
+const app = createApp(App).use(IonicVue).use(Maska).use(router);
 
 router.isReady().then(() => {
   app.mount("#app");

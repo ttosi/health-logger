@@ -1,25 +1,55 @@
 {
   "workouts": [
     {
-      "startDate": "datetime",
-      "endDate": "datetime",
-      "type": "lift|core",
+      "startDate": "Tue Sep 27 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
       "exercises": [
-        {
-          "id": "",
-          "label": "",
-          "type": "weight|duration",
-          "valueType": "reps|time",
-          "values": [0, 0, 0]
-        }
+        { "id": "cp", "values": [70, 70, 75] },
+        { "id": "sr", "values": [70, 70, 75] },
+        { "id": "sp", "values": [70, 70, 75] },
+        { "id": "lp", "values": [70, 70, 75] }
       ],
       "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
+        "duration": 21.75,
+        "distance": 1.85,
+        "pace": 23.87,
+        "average_pace": 12.5
       },
-      "swim": []
+      "swim": {}
+    },
+    {
+      "startDate": "Fri Sep 30 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "exercises": [
+        { "id": "cp", "values": [70, 70, 75] },
+        { "id": "sr", "values": [50, 40, 60] },
+        { "id": "sp", "values": [90, 100, 90] },
+        { "id": "lp", "values": [115, 115, 115] }
+      ],
+      "run": {
+        "duration": 21.75,
+        "distance": 1.85,
+        "pace": 23.87,
+        "average_pace": 12.5
+      },
+      "swim": {}
+    },
+    {
+      "startDate": "Tue Sep 27 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "exercises": [
+        { "id": "cp", "values": [70, 70, 75] },
+        { "id": "sr", "values": [70, 70, 75] },
+        { "id": "sp", "values": [70, 70, 75] },
+        { "id": "lp", "values": [70, 70, 75] }
+      ],
+      "run": {
+        "duration": 21.75,
+        "distance": 1.85,
+        "pace": 23.87,
+        "average_pace": 12.5
+      },
+      "swim": {}
     }
   ]
 }
