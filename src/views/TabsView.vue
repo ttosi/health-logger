@@ -25,8 +25,6 @@
 </template>
 
 <script lang="ts" setup>
-import { watchEffect } from "vue";
-import { useRoute } from "vue-router";
 import {
   IonTabBar,
   IonTabButton,
@@ -35,16 +33,5 @@ import {
   IonIcon,
   IonPage,
   IonRouterOutlet,
-  isPlatform,
 } from "@ionic/vue";
-
-watchEffect(() => {
-  if (!isPlatform("mobileweb")) {
-    if (useRoute().name === "graphs") {
-      screen.orientation.lock("landscape");
-    } else {
-      screen.orientation.lock("portrait");
-    }
-  }
-});
 </script>

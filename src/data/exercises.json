@@ -1,10 +1,17 @@
 [
-  { "value": "dip", "text": "Shoulder Dip" },
-  { "value": "cp", "text": "Chest Press" },
-  { "value": "sr", "text": "Seated Row" },
-  { "value": "sp", "text": "Seated Press" },
-  { "value": "lp", "text": "Lat Pulldown" },
-  { "value": "tp", "text": "Tricep Press" },
-  { "value": "bc", "text": "Bicep Curl" },
-  { "value": "pf", "text": "Pec Fly" }
+  { "value": "dip", "type": "weight", "text": "Shoulder Dip" },
+  { "value": "cp", "type": "weight", "text": "Chest Press" },
+  { "value": "sr", "type": "weight", "text": "Seated Row" },
+  { "value": "sp", "type": "weight", "text": "Seated Press" },
+  { "value": "lp", "type": "weight", "text": "Lat Pulldown" },
+  { "value": "tp", "type": "weight", "text": "Tricep Press" },
+  { "value": "bc", "type": "weight", "text": "Bicep Curl" },
+
+  { "value": "isu", "type": "core", "text": "Inclined Situps" },
+  { "value": "kpu", "type": "core", "text": "Knee Pullup" },
+  { "value": "plnk", "type": "core", "text": "Plank" },
+  { "value": "vuh", "type": "core", "text": "V-up Hold" },
+  { "value": "pnk", "type": "core", "text": "Plank Knee Cross" },
+  { "value": "byc", "type": "core", "text": "Bicycle Crunch" },
+  { "value": "spl", "type": "core", "text": "Side Plank" }
 ]
