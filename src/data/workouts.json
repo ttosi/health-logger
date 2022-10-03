@@ -5,154 +5,105 @@
       "endDate": "Thu Sep 08 2022 12:30:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [90, 95, 90] },
-        { "exercise": "sr", "weights": [110, 110, 100] },
-        { "exercise": "sp", "weights": [60, 60, 50] },
-        { "exercise": "lp", "weights": [110, 100, 100] },
-        { "exercise": "tp", "weights": [120, 125, 120] },
-        { "exercise": "bc", "weights": [70, 65, 60] },
-        { "exercise": "pf", "weights": [80, 80, 80] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [90, 95, 90] },
+        { "exercise": "sr", "values": [110, 110, 100] },
+        { "exercise": "sp", "values": [60, 60, 50] },
+        { "exercise": "lp", "values": [110, 100, 100] },
+        { "exercise": "tp", "values": [120, 125, 120] },
+        { "exercise": "bc", "values": [70, 65, 60] },
+        { "exercise": "pf", "values": [80, 80, 80] }
+      ]
     },
     {
       "startDate": "Fri Sep 09 2022 12:02:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Fri Sep 09 2022 12:54:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [95, 95, 90] },
-        { "exercise": "sr", "weights": [110, 110, 100] },
-        { "exercise": "sp", "weights": [50, 50, 50] },
-        { "exercise": "lp", "weights": [110, 100, 100] },
-        { "exercise": "tp", "weights": [130, 125, 120] },
-        { "exercise": "bc", "weights": [65, 65, 60] },
-        { "exercise": "pf", "weights": [80, 75, 75] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [95, 95, 90] },
+        { "exercise": "sr", "values": [110, 110, 100] },
+        { "exercise": "sp", "values": [50, 50, 50] },
+        { "exercise": "lp", "values": [110, 100, 100] },
+        { "exercise": "tp", "values": [130, 125, 120] },
+        { "exercise": "bc", "values": [65, 65, 60] },
+        { "exercise": "pf", "values": [80, 75, 75] }
+      ]
     },
     {
       "startDate": "Mon Sep 12 2022 11:55:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Mon Sep 12 2022 12:43:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [100, 100, 95] },
-        { "exercise": "sr", "weights": [115, 115, 110] },
-        { "exercise": "sp", "weights": [50, 55, 50] },
-        { "exercise": "lp", "weights": [115, 115, 110] },
-        { "exercise": "tp", "weights": [125, 135, 130] },
-        { "exercise": "bc", "weights": [70, 65, 60] },
-        { "exercise": "pf", "weights": [80, 90, 85] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [100, 100, 95] },
+        { "exercise": "sr", "values": [115, 115, 110] },
+        { "exercise": "sp", "values": [50, 55, 50] },
+        { "exercise": "lp", "values": [115, 115, 110] },
+        { "exercise": "tp", "values": [125, 135, 130] },
+        { "exercise": "bc", "values": [70, 65, 60] },
+        { "exercise": "pf", "values": [80, 90, 85] }
+      ]
     },
     {
       "startDate": "Wed Sep 14 2022 12:07:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Wed Sep 14 2022 12:53:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [100, 100, 95] },
-        { "exercise": "sr", "weights": [115, 115, 110] },
-        { "exercise": "sp", "weights": [55, 55, 50] },
-        { "exercise": "lp", "weights": [115, 115, 110] },
-        { "exercise": "tp", "weights": [135, 135, 130] },
-        { "exercise": "bc", "weights": [70, 70, 60] },
-        { "exercise": "pf", "weights": [90, 90, 90] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [100, 100, 95] },
+        { "exercise": "sr", "values": [115, 115, 110] },
+        { "exercise": "sp", "values": [55, 55, 50] },
+        { "exercise": "lp", "values": [115, 115, 110] },
+        { "exercise": "tp", "values": [135, 135, 130] },
+        { "exercise": "bc", "values": [70, 70, 60] },
+        { "exercise": "pf", "values": [90, 90, 90] }
+      ]
     },
     {
       "startDate": "Mon Sep 19 2022 11:47:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Mon Sep 19 2022 12:39:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [100, 100, 95] },
-        { "exercise": "sr", "weights": [115, 110, 110] },
-        { "exercise": "sp", "weights": [55, 55, 50] },
-        { "exercise": "lp", "weights": [115, 115, 110] },
-        { "exercise": "tp", "weights": [135, 135, 130] },
-        { "exercise": "bc", "weights": [70, 70, 60] },
-        { "exercise": "pf", "weights": [70, 70, 70] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [100, 100, 95] },
+        { "exercise": "sr", "values": [115, 110, 110] },
+        { "exercise": "sp", "values": [55, 55, 50] },
+        { "exercise": "lp", "values": [115, 115, 110] },
+        { "exercise": "tp", "values": [135, 135, 130] },
+        { "exercise": "bc", "values": [70, 70, 60] },
+        { "exercise": "pf", "values": [70, 70, 70] }
+      ]
     },
     {
       "startDate": "Wed Sep 21 2022 11:59:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Wed Sep 21 2022 12:45:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [100, 100, 100] },
-        { "exercise": "sr", "weights": [115, 115, 110] },
-        { "exercise": "sp", "weights": [55, 55, 55] },
-        { "exercise": "lp", "weights": [115, 115, 115] },
-        { "exercise": "tp", "weights": [135, 135, 135] },
-        { "exercise": "bc", "weights": [70, 65, 60] },
-        { "exercise": "pf", "weights": [75, 75, 75] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [100, 100, 100] },
+        { "exercise": "sr", "values": [115, 115, 110] },
+        { "exercise": "sp", "values": [55, 55, 55] },
+        { "exercise": "lp", "values": [115, 115, 115] },
+        { "exercise": "tp", "values": [135, 135, 135] },
+        { "exercise": "bc", "values": [70, 65, 60] },
+        { "exercise": "pf", "values": [75, 75, 75] }
+      ]
     },
     {
       "startDate": "Fri Sep 23 2022 11:50:00 GMT-0700 (Pacific Daylight Time)",
       "endDate": "Fri Sep 23 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "exercise": "dip", "weights": [60, 65, 75] },
-        { "exercise": "cp", "weights": [100, 100, 90] },
-        { "exercise": "sr", "weights": [115, 115, 110] },
-        { "exercise": "sp", "weights": [55, 55, 60] },
-        { "exercise": "lp", "weights": [115, 115, 110] },
-        { "exercise": "tp", "weights": [115, 115, 115] },
-        { "exercise": "bc", "weights": [70, 65, 60] },
-        { "exercise": "pf", "weights": [80, 80, 80] }
-      ],
-      "core": [],
-      "run": {
-        "duration": 0,
-        "distance": 0,
-        "pace": 0,
-        "average_pace": 0
-      }
+        { "exercise": "dip", "values": [60, 65, 75] },
+        { "exercise": "cp", "values": [100, 100, 90] },
+        { "exercise": "sr", "values": [115, 115, 110] },
+        { "exercise": "sp", "values": [55, 55, 60] },
+        { "exercise": "lp", "values": [115, 115, 110] },
+        { "exercise": "tp", "values": [115, 115, 115] },
+        { "exercise": "bc", "values": [70, 65, 60] },
+        { "exercise": "pf", "values": [80, 80, 80] }
+      ]
     }
   ]
 }

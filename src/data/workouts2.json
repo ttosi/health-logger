@@ -1,55 +1,64 @@
 {
   "workouts": [
     {
-      "startDate": "Tue Sep 27 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
-      "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "startDate": "Tue Sep 21 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Sep 21 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "weight",
       "exercises": [
         { "id": "cp", "values": [70, 70, 75] },
         { "id": "sr", "values": [70, 70, 75] },
         { "id": "sp", "values": [70, 70, 75] },
         { "id": "lp", "values": [70, 70, 75] }
-      ],
-      "run": {
-        "duration": 21.75,
-        "distance": 1.85,
-        "pace": 23.87,
-        "average_pace": 12.5
-      },
-      "swim": {}
-    },
-    {
-      "startDate": "Fri Sep 30 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
-      "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
-      "exercises": [
-        { "id": "cp", "values": [70, 70, 75] },
-        { "id": "sr", "values": [50, 40, 60] },
-        { "id": "sp", "values": [90, 100, 90] },
-        { "id": "lp", "values": [115, 115, 115] }
-      ],
-      "run": {
-        "duration": 21.75,
-        "distance": 1.85,
-        "pace": 23.87,
-        "average_pace": 12.5
-      },
-      "swim": {}
+      ]
     },
     {
       "startDate": "Tue Sep 27 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
       "endDate": "Tue Sep 27 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "weight",
       "exercises": [
         { "id": "cp", "values": [70, 70, 75] },
         { "id": "sr", "values": [70, 70, 75] },
         { "id": "sp", "values": [70, 70, 75] },
         { "id": "lp", "values": [70, 70, 75] }
-      ],
-      "run": {
-        "duration": 21.75,
-        "distance": 1.85,
-        "pace": 23.87,
-        "average_pace": 12.5
-      },
-      "swim": {}
+      ]
+    },
+    {
+      "startDate": "Fri Sep 29 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Fri Sep 29 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "weight",
+      "exercises": [
+        { "id": "dip", "values": [60, 65, 75] },
+        { "id": "cp", "values": [100, 100, 90] },
+        { "id": "sr", "values": [115, 115, 110] },
+        { "id": "sp", "values": [55, 55, 60] },
+        { "id": "lp", "values": [115, 115, 110] },
+        { "id": "tp", "values": [115, 115, 115] },
+        { "id": "bc", "values": [70, 65, 60] },
+        { "id": "pf", "values": [80, 80, 80] }
+      ]
+    },
+    {
+      "startDate": "Fri Sep 29 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Fri Sep 29 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "core",
+      "exercises": [
+        { "id": "isu", "values": [60, 65, 75] },
+        { "id": "kpu", "values": [100, 100, 90] },
+        { "id": "plnk", "values": ["00:00", "00:00", "00:00"] },
+        { "id": "vuh", "values": ["00:00", "00:00", "00:00"] },
+        { "id": "pnk", "values": [115, 115, 110] },
+        { "id": "byc", "values": ["00:00", "00:00", "00:00"] },
+        { "id": "spl", "values": ["00:00", "00:00", "00:00"] }
+      ]
+    },
+    {
+      "startDate": "Tue Sep 30 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Sep 30 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "run",
+      "duration": 21.75,
+      "distance": 1.85,
+      "pace": 23.87,
+      "average_pace": 12.5
     }
   ]
 }

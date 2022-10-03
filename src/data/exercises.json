@@ -6,11 +6,13 @@
   { "id": "lp", "type": "weight", "inputType": "number", "text": "Lat Pulldown" },
   { "id": "tp", "type": "weight", "inputType": "number", "text": "Tricep Press" },
   { "id": "bc", "type": "weight", "inputType": "number", "text": "Bicep Curl" },
-  { "id": "isu", "type": "core", "inputType": "duration", "text": "Inclined Situps" },
-  { "id": "kpu", "type": "core", "inputType": "duration", "text": "Knee Pullup" },
+  { "id": "pf", "type": "weight", "inputType": "number", "text": "Pec Fly" },
+  { "id": "isu", "type": "core", "inputType": "number", "text": "Inclined Situps" },
+  { "id": "kpu", "type": "core", "inputType": "number", "text": "Knee Pullup" },
   { "id": "plnk","type": "core", "inputType": "duration", "text": "Plank" },
   { "id": "vuh", "type": "core", "inputType": "duration", "text": "V-up Hold" },
-  { "id": "pnk", "type": "core", "inputType": "duration", "text": "Plank Knee Cross" },
+  { "id": "pnk", "type": "core", "inputType": "number", "text": "Plank Knee Cross" },
   { "id": "byc", "type": "core", "inputType": "duration", "text": "Bicycle Crunch" },
   { "id": "spl", "type": "core", "inputType": "duration", "text": "Side Plank" }
 ]
+
