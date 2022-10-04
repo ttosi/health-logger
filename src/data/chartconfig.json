@@ -1,0 +1,38 @@
+{
+  "type": "line",
+  "options": {
+    "scales": {
+      "x": {
+        "display": false,
+        "ticks": {
+          "display": false
+        }
+      },
+      "y": {
+        "display": true
+      }
+    },
+    "responsive": true,
+    "elements": {
+      "line": {
+        "borderColor": "#000000",
+        "borderWidth": 1
+      },
+      "point": {
+        "radius": 0
+      }
+    },
+    "plugins": {
+      "legend": {
+        "labels": {
+          "font": {
+            "size": 16,
+            "weight": "bold"
+          },
+          "boxWidth": 0
+        },
+        "display": true
+      }
+    }
+  }
+}

@@ -23,21 +23,21 @@
             size="large"
             class=""
             @click="newWorkout('weights')">
-            New Upper Body Workout
+            Upper Body Workout
           </ion-button>
           <ion-button
             expand="full"
             size="large"
-            class=""
+            class="my-3"
             @click="newWorkout('core')">
-            New Core Workout
+            Core Workout
           </ion-button>
           <ion-button
             expand="full"
             size="large"
             class=""
             @click="newWorkout('run')">
-            Start New Run
+            Run
           </ion-button>
         </div>
         <div v-else class="w-full m-5">
@@ -287,11 +287,11 @@ const navigateExercise = (dir) => {
 };
 
 const completeWorkout = () => {
-  console.log(activeWorkout.value);
   activeWorkout.value.endDate = new Date().toString();
   workouts.push(activeWorkout.value);
-  activeWorkout.value = undefined;
+
   localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
+  activeWorkout.value = undefined;
 };
 
 const sortedWorkouts = computed(() => {
@@ -338,6 +338,7 @@ const confirmDiscard = async () => {
         role: "confirm",
         handler() {
           activeWorkout.value = null;
+          activeWorkout.value = undefined;
         },
       },
     ],

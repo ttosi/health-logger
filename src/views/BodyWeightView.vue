@@ -11,24 +11,25 @@
           v-model="bodyweight"
           type="number"
           class="text-xl mr-3 border border-gray-600"
-          placeholder="Weight"
-          @click="addWeight" />
-        <ion-button size="large">Add Weight</ion-button>
+          placeholder="Weight" />
+        <ion-button size="large" @click="addWeight()">Add Weight</ion-button>
       </div>
     </div>
     <div class="h-3/6">
       <ion-content>
         <ion-item
-          v-for="(bodyweight, index) in sortedBodyweights"
+          v-for="(weight, index) in bodyweights"
           :key="index"
           class="text-gray-500">
           <ion-label class="font-thin">
-            {{ useDateFormat(new Date(bodyweight.date), "MM/DD/YYYY").value }}
+            {{ useDateFormat(new Date(weight.date), "MM/DD/YYYY").value }}
             -
-            <span class="font-bold text-gray-600">
-              {{ bodyweight.weight }} lbs
-            </span>
+            <span class="font-bold text-gray-600">{{ weight.weight }} lbs</span>
           </ion-label>
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            @click="deleteBodyweight(weight)" />
         </ion-item>
       </ion-content>
     </div>
@@ -39,8 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useDateFormat } from "@vueuse/shared";
+import { alertController } from "@ionic/core";
 import { bodyweights as data } from "@/data";
 import { Chart, registerables } from "chart.js";
 import {
@@ -49,12 +51,15 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonInput,
   IonButton,
+  IonIcon,
   IonItem,
   IonLabel,
 } from "@ionic/vue";
 
 Chart.register(...registerables);
+let bodyweightChart;
 const bodyweight = ref(null);
 
 if (!localStorage.getItem("bodyweights")) {
@@ -65,36 +70,75 @@ const bodyweights = reactive(
   JSON.parse(localStorage.getItem("bodyweights")).bodyWeights
 );
 
-const sortedBodyweights = computed(() => {
-  const bw = bodyweights;
-  return bw.reverse();
-});
-
 const addWeight = () => {
-  bodyweights.push({
+  if (!bodyweight.value) {
+    alert("Weight is required");
+    return;
+  }
+  bodyweights.unshift({
     date: new Date().toString(),
     weight: bodyweight.value,
   });
+  bodyweight.value = undefined;
+  updateChart();
+
   localStorage.setItem(
     "bodyweights",
     JSON.stringify({ bodyWeights: bodyweights })
   );
 };
 
+let weightToDelete;
+const deleteBodyweight = (weight) => {
+  weightToDelete = weight;
+  confirmDelete();
+};
+
+const confirmDelete = async () => {
+  const alert = await alertController.create({
+    header: "Discard this workout?",
+    buttons: [
+      { text: "Cancel", role: "cancel" },
+      {
+        text: "Delete",
+        handler() {
+          bodyweights.splice(bodyweights.indexOf(weightToDelete), 1);
+          localStorage.setItem(
+            "bodyweights",
+            JSON.stringify({ bodyWeights: bodyweights })
+          );
+          updateChart();
+        },
+      },
+    ],
+  });
+  await alert.present();
+};
+
+const updateChart = () => {
+  bodyweightChart.data.labels = bodyweights
+    .map((w) => useDateFormat(new Date(w.date), "D").value)
+    .reverse();
+  bodyweightChart.data.datasets[0].data = bodyweights
+    .map((w) => w.weight)
+    .reverse();
+  bodyweightChart.update();
+};
+
 onMounted(() => {
-  const chartContext = (
-    document.getElementById("bodyweightChart") as HTMLCanvasElement
-  )?.getContext("2d");
-  new Chart(chartContext, {
+  const chartContext = document.getElementById(
+    "bodyweightChart"
+  ) as HTMLCanvasElement;
+  bodyweightChart = new Chart(chartContext, {
     type: "line",
     data: {
-      labels: bodyweights.map(
-        (w) => useDateFormat(new Date(w.date), "D").value
-      ),
+      labels: bodyweights
+        .map((w) => useDateFormat(new Date(w.date), "D").value)
+        .reverse(),
       datasets: [
         {
           label: "Body Weight",
-          data: bodyweights.map((w) => w.weight),
+          data: bodyweights.map((w) => w.weight).reverse(),
           borderWidth: 2,
           borderColor: "#3880FF",
         },

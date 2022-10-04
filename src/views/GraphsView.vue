@@ -6,17 +6,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <div>
-        <div>
-          <canvas id="weightChart" />
-        </div>
-        <div>
-          <canvas id="coreChart" />
-        </div>
-        <div>
-          <canvas id="runChart" />
-        </div>
-      </div>
+      <ion-item v-for="(chart, index) in weightData" :key="index">
+        <canvas :id="chart.id" width="200" height="40"></canvas>
+      </ion-item>
     </ion-content>
   </ion-page>
 </template>
@@ -29,85 +21,68 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonItem,
 } from "@ionic/vue";
-import { Chart, registerables } from "chart.js";
 import { useDateFormat } from "@vueuse/core";
-import { chartcolors } from "@/data";
+import { chartconfig, exercises } from "@/data";
+import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 const workouts = JSON.parse(localStorage.getItem("workouts")).workouts;
+const weightWorkouts = workouts.filter((w) => w.type === "weights");
+const chartLabels = weightWorkouts.map(
+  (w: any) => useDateFormat(new Date(w.startDate), "D").value
+);
 
 let chartData = {};
-workouts.forEach((wo: any) => {
+weightWorkouts.forEach((wo: any) => {
   const exercises = wo.exercises.map((ex: any) => {
     return {
-      exercise: ex.exercise,
-      weight: Math.round(ex.weights.reduce((sum: any, w: any) => sum + w) / 3),
+      id: ex.id,
+      value: Math.round(ex.values.reduce((sum: any, w: any) => sum + w) / 3),
     };
   });
   exercises.forEach((ex: any) => {
-    if (!chartData[ex.exercise]) {
-      chartData[ex.exercise] = [];
+    if (!chartData[ex.id]) {
+      chartData[ex.id] = [];
     }
-    chartData[ex.exercise].push(ex.weight);
+    chartData[ex.id].push(ex.value);
   });
 });
 
-const weightData = Object.keys(chartData).map((k, index) => {
+const weightData = Object.keys(chartData).map((k) => {
   return {
-    label: k,
+    label: exercises.find((e) => e.id === k).text,
+    id: k,
     data: chartData[k],
+    fill: true,
     borderWidth: 2,
-    backgroundColor: chartcolors[index],
-    borderColor: chartcolors[index],
+    borderColor: "#3880FF",
+    backgroundColor: "#b0c5e8",
   };
 });
 
-const weights = {
-  config: {},
-  context: undefined,
-  labels: workouts.map(
-    (w: any) => useDateFormat(new Date(w.startDate), "D").value
-  ),
-  render() {
-    new Chart(this.context, {
-      type: "line",
-      data: {
-        labels: this.labels,
-        datasets: weightData,
-      },
-      plugins: [
-        {
-          id: "canvas_backgroundColor",
-          beforeDraw: (chart) => {
-            const { ctx } = chart;
-            ctx.save();
-            ctx.globalCompositeOperation = "destination-over";
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, chart.width, chart.height);
-            ctx.restore();
-          },
-        },
-      ],
-      options: {
-        scales: {
-          y: {
-            ticks: {
-              callback: function (value) {
-                return value + " lbs";
-              },
-            },
-          },
-        },
-      },
-    });
-  },
-};
-
 onMounted(() => {
-  weights.context = (
-    document.getElementById("weightChart") as HTMLCanvasElement
-  )?.getContext("2d");
-  weights.render();
+  weightData.forEach((w) => {
+    // console.log(w);
+    const context = document.getElementById(w.id) as HTMLCanvasElement;
+    const config = {
+      ...chartconfig,
+      data: {
+        labels: chartLabels,
+        datasets: [
+          {
+            label: w.label,
+            fill: true,
+            borderWidth: 2,
+            borderColor: "#3880FF",
+            backgroundColor: "#b0c5e8",
+            data: w.data,
+          },
+        ],
+      },
+    };
+    new Chart(context, config);
+  });
 });
 </script>
