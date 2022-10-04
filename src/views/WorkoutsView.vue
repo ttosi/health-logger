@@ -8,16 +8,15 @@
     <div v-if="activeWorkout">
       <ion-fab vertical="top" horizontal="end" slot="fixed" class="mt-4 flex">
         <ion-fab-button color="success" size="small" @click="confirmComplete">
-          <ion-icon name="checkmark-outline"></ion-icon>
+          <ion-icon name="checkmark-outline" />
         </ion-fab-button>
         <ion-fab-button color="danger" size="small" @click="confirmDiscard">
-          <ion-icon name="trash-outline"></ion-icon>
+          <ion-icon name="trash-outline" />
         </ion-fab-button>
       </ion-fab>
     </div>
     <div class="h-2/3">
       <div class="flex justify-center items-center h-full">
-        <!-- select workout type -->
         <div v-if="!activeWorkout">
           <ion-button
             expand="full"
@@ -42,74 +41,79 @@
           </ion-button>
         </div>
         <div v-else class="w-full m-5">
-          <div class="col-span-3 text-center text-white">
-            <ion-select
-              v-model="currentExercise"
-              interface="action-sheet"
-              placeholder="Select Exercise"
-              class="bg-blue-500 uppercase text-2xl"
-              @ionChange="addExercise">
-              <ion-select-option
-                v-for="exercise in filteredExercises"
-                :value="exercise"
-                :key="exercise"
-                class="uppercase font-bold">
-                {{ exercise.text }}
-              </ion-select-option>
-            </ion-select>
+          <div class="flex justify-center mb-5 text-4xl font-bold uppercase">
+            {{ activeWorkout.type }}
           </div>
-          <div
-            v-if="currentExercise"
-            class="w-full text-center my-2 text-2xl font-semibold">
-            {{ currentExercise.text }}
-          </div>
-          <div
-            v-if="activeWorkout.exercises.length > 0"
-            class="mt-3 grid grid-cols-3 gap-5 w-full text-center justify-between font-bold text-4xl">
-            <div v-for="(val, index) in activeExercise" :key="index">
-              <div
-                v-if="currentExercise.inputType === 'number'"
-                class="border border-gray-400 items-center pt-1">
-                <ion-select
-                  v-model="activeExercise[index]"
-                  interface="action-sheet"
-                  class="pr-3">
-                  <ion-select-option
-                    :value="weight"
-                    v-for="weight in weights"
-                    :key="weight">
-                    {{ weight }}
-                  </ion-select-option>
-                </ion-select>
-              </div>
-              <div
-                v-if="currentExercise.inputType === 'duration'"
-                class="items-center border border-gray-400">
-                <input
-                  v-model="activeExercise[index]"
-                  v-maska="'##:##'"
-                  class="input p-3 pt-4 w-full text-center text-3xl"
-                  pattern="[0-9]*"
-                  inputmode="numeric" />
+          <div v-if="activeWorkout.type === 'weights' || 'core'">
+            <div class="col-span-3 text-center text-white">
+              <ion-select
+                v-model="currentExercise"
+                interface="action-sheet"
+                placeholder="Select Exercise"
+                class="bg-blue-500 uppercase text-2xl"
+                @ionChange="addExercise">
+                <ion-select-option
+                  v-for="exercise in filteredExercises"
+                  :value="exercise"
+                  :key="exercise"
+                  class="uppercase font-bold">
+                  {{ exercise.text }}
+                </ion-select-option>
+              </ion-select>
+            </div>
+            <div
+              v-if="currentExercise"
+              class="w-full text-center my-2 text-2xl font-semibold">
+              {{ currentExercise.text }}
+            </div>
+            <div
+              v-if="activeWorkout.exercises.length > 0"
+              class="mt-3 grid grid-cols-3 gap-5 w-full text-center justify-between font-bold text-4xl">
+              <div v-for="(val, index) in activeExercise" :key="index">
+                <div
+                  v-if="currentExercise.inputType === 'number'"
+                  class="border border-gray-400 items-center pt-1">
+                  <ion-select
+                    v-model="activeExercise[index]"
+                    interface="action-sheet"
+                    class="pr-3">
+                    <ion-select-option
+                      :value="weight"
+                      v-for="weight in weights"
+                      :key="weight">
+                      {{ weight }}
+                    </ion-select-option>
+                  </ion-select>
+                </div>
+                <div
+                  v-if="currentExercise.inputType === 'duration'"
+                  class="items-center border border-gray-400">
+                  <input
+                    v-model="activeExercise[index]"
+                    v-maska="'##:##'"
+                    class="input p-3 pt-4 w-full text-center text-3xl"
+                    pattern="[0-9]*"
+                    inputmode="numeric" />
+                </div>
               </div>
             </div>
-          </div>
-          <div v-show="currentExercise" class="flex mt-3">
-            <ion-button
-              expand="block"
-              size="large"
-              class="w-1/2"
-              @click="navigateExercise('prev')">
-              Prev
-            </ion-button>
-            <ion-button
-              expand="block"
-              size="large"
-              fill="solid"
-              class="w-1/2"
-              @click="navigateExercise('next')">
-              Next
-            </ion-button>
+            <div v-show="currentExercise" class="flex mt-5">
+              <ion-button
+                expand="block"
+                size="large"
+                class="w-1/2 m-0 mr-5"
+                @click="navigateExercise('prev')">
+                Prev
+              </ion-button>
+              <ion-button
+                expand="block"
+                size="large"
+                fill="solid"
+                class="w-1/2 m-0"
+                @click="navigateExercise('next')">
+                Next
+              </ion-button>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +180,7 @@ const workouts = reactive(
 );
 
 const newWorkout = (type) => {
-  console.log(type, "dgf");
+  // console.log(type, "dgf");
   activeWorkout.value = {
     startDate: new Date().toString(),
     endDate: null,
@@ -197,6 +201,7 @@ const newWorkout = (type) => {
 };
 
 const addExercise = () => {
+  // console.log("------->", activeWorkout);
   if (
     activeWorkout.value.exercises.find((e) => e.id === currentExercise.value.id)
   ) {
@@ -207,6 +212,12 @@ const addExercise = () => {
   const lastValues = sortedWorkouts.value
     .filter((sw) => sw.type === activeWorkout.value.type)[0]
     .exercises.find((ex) => ex.id === currentExercise.value.id);
+
+  console.log(
+    sortedWorkouts.value.filter((sw) => sw.type === activeWorkout.value.type)[0]
+  );
+  // console.log(activeWorkout.value.type);
+  // console.log(currentExercise.value.id);
 
   // exercise isn't there, add it to exercises
   activeWorkout.value.exercises.splice(0, 0, {
