@@ -44,7 +44,10 @@
           <div class="flex justify-center mb-5 text-4xl font-bold uppercase">
             {{ activeWorkout.type }}
           </div>
-          <div v-if="activeWorkout.type === 'weights' || 'core'">
+          <div
+            v-if="
+              activeWorkout.type === 'weights' || activeWorkout.type === 'core'
+            ">
             <div class="col-span-3 text-center text-white">
               <ion-select
                 v-model="currentExercise"
@@ -115,6 +118,44 @@
               </ion-button>
             </div>
           </div>
+          <div v-else class="col-span-3">
+            <div class="grid grid-cols-2 gap-3 text-center font-normal text-lg">
+              <div>
+                <label class="">DURATION</label>
+                <input
+                  v-model="activeWorkout.duration"
+                  v-maska="'##:##'"
+                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                  pattern="[0-9]*"
+                  inputmode="numeric" />
+              </div>
+              <div>
+                <label class="">DISTANCE</label>
+                <ion-input
+                  v-model="activeWorkout.distance"
+                  type="number"
+                  class="pb-6 border border-gray-400 text-3xl" />
+              </div>
+              <div>
+                <label class="">PACE</label>
+                <input
+                  v-model="activeWorkout.pace"
+                  v-maska="'##:##'"
+                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                  pattern="[0-9]*"
+                  inputmode="numeric" />
+              </div>
+              <div>
+                <label class="">AVERAGE PACE</label>
+                <input
+                  v-model="activeWorkout.average_pace"
+                  v-maska="'##:##'"
+                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                  pattern="[0-9]*"
+                  inputmode="numeric" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -158,6 +199,7 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonInput,
   IonFab,
   IonFabButton,
   IonSelect,
@@ -180,7 +222,7 @@ const workouts = reactive(
 );
 
 const newWorkout = (type) => {
-  // console.log(type, "dgf");
+  currentExercise.value = undefined;
   activeWorkout.value = {
     startDate: new Date().toString(),
     endDate: null,
@@ -188,11 +230,12 @@ const newWorkout = (type) => {
   };
 
   if (type === "run") {
-    activeWorkout.value.run = {
-      duration: 0,
-      distance: 0,
-      pace: 0,
-      average_pace: 0,
+    activeWorkout.value = {
+      ...activeWorkout.value,
+      duration: null,
+      distance: null,
+      pace: null,
+      average_pace: null,
     };
     return;
   }
@@ -228,6 +271,7 @@ const addExercise = () => {
 
 const navigateExercise = (dir) => {
   // grab the exercise's current index
+  console.log("navigate");
   let exerciseIndex = filteredExercises.value.findIndex(
     (e) => e.id === currentExercise.value.id
   );
