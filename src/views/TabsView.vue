@@ -33,5 +33,5 @@ import {
   IonIcon,
   IonPage,
   IonRouterOutlet,
-} from "@ionic/vue";
+} from '@ionic/vue'
 </script>

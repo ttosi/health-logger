@@ -18,11 +18,7 @@
     <div class="h-2/3">
       <div class="flex justify-center items-center h-full">
         <div v-if="!activeWorkout">
-          <ion-button
-            expand="full"
-            size="large"
-            class=""
-            @click="newWorkout('weights')">
+          <ion-button expand="full" size="large" @click="newWorkout('weights')">
             Upper Body Workout
           </ion-button>
           <ion-button
@@ -32,11 +28,7 @@
             @click="newWorkout('core')">
             Core Workout
           </ion-button>
-          <ion-button
-            expand="full"
-            size="large"
-            class=""
-            @click="newWorkout('run')">
+          <ion-button expand="full" size="large" @click="newWorkout('run')">
             Run
           </ion-button>
         </div>
@@ -121,7 +113,7 @@
           <div v-else class="col-span-3">
             <div class="grid grid-cols-2 gap-3 text-center font-normal text-lg">
               <div>
-                <label class="">DURATION</label>
+                <label>DURATION</label>
                 <input
                   v-model="activeWorkout.duration"
                   v-maska="'##:##'"
@@ -130,14 +122,14 @@
                   inputmode="numeric" />
               </div>
               <div>
-                <label class="">DISTANCE</label>
+                <label>DISTANCE</label>
                 <ion-input
                   v-model="activeWorkout.distance"
                   type="number"
                   class="pb-6 border border-gray-400 text-3xl" />
               </div>
               <div>
-                <label class="">PACE</label>
+                <label>PACE</label>
                 <input
                   v-model="activeWorkout.pace"
                   v-maska="'##:##'"
@@ -146,7 +138,7 @@
                   inputmode="numeric" />
               </div>
               <div>
-                <label class="">AVERAGE PACE</label>
+                <label>AVERAGE PACE</label>
                 <input
                   v-model="activeWorkout.average_pace"
                   v-maska="'##:##'"
@@ -162,26 +154,25 @@
     <div class="border-t-gray-600 border-t h-1/3">
       <ion-content>
         <ion-item v-for="(workout, index) in sortedWorkouts" :key="index">
-          <div class="flex w-full">
-            <div class="text-left w-full">
-              <ion-label class="font-thin">
-                <!-- {{ useDateFormat(new Date(workout.startDate), "dddd").value }}, -->
+          <ion-label class="font-thin">
+            <div class="text-left w-full justify-between flex">
+              <div>
                 <span class="font-semibold uppercase">{{ workout.type }}</span>
-                {{ useTimeAgo(new Date(workout.endDate)).value }}
                 for
-                <span>
-                  {{
-                    useDateFormat(
-                      new Date(workout.endDate).getTime() -
-                        new Date(workout.startDate).getTime(),
-                      "m"
-                    ).value
-                  }}
-                  minutes
-                </span>
-              </ion-label>
+                {{
+                  useDateFormat(
+                    new Date(workout.endDate).getTime() -
+                      new Date(workout.startDate).getTime(),
+                    'm'
+                  ).value
+                }}
+                minutes
+              </div>
+              <div>
+                {{ useTimeAgo(new Date(workout.endDate)).value }}
+              </div>
             </div>
-          </div>
+          </ion-label>
         </ion-item>
       </ion-content>
     </div>
@@ -189,7 +180,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from "vue";
+import { ref, reactive } from 'vue'
 import {
   IonPage,
   IonHeader,
@@ -205,146 +196,140 @@ import {
   IonSelect,
   IonSelectOption,
   IonIcon,
-} from "@ionic/vue";
-import { computed, toRaw } from "@vue/reactivity";
-import { useDateFormat, useTimeAgo } from "@vueuse/core";
-import { alertController } from "@ionic/core";
-import { exercises, weights, workouts as data } from "@/data";
+} from '@ionic/vue'
+import { computed, toRaw } from '@vue/reactivity'
+import { useDateFormat, useTimeAgo } from '@vueuse/core'
+import { alertController } from '@ionic/core'
+import { exercises, workouts as data } from '@/data'
 
-if (!localStorage.getItem("workouts")) {
-  localStorage.setItem("workouts", JSON.stringify(data));
+if (!localStorage.getItem('workouts')) {
+  localStorage.setItem('workouts', JSON.stringify(data))
 }
 
-const activeWorkout = ref(null);
-const currentExercise = ref(null);
-const workouts = reactive(
-  JSON.parse(localStorage.getItem("workouts")).workouts
-);
+const activeWorkout = ref(null)
+const currentExercise = ref(null)
+const weights = [
+  ...[...Array(20).keys()].map((n) => n * 10),
+  ...[...Array(10).keys()].map((n) => n * 10 + 5),
+].sort((a, b) => a - b)
+const workouts = reactive(JSON.parse(localStorage.getItem('workouts')).workouts)
 
 const newWorkout = (type) => {
-  currentExercise.value = undefined;
+  currentExercise.value = undefined
   activeWorkout.value = {
     startDate: new Date().toString(),
     endDate: null,
     type: type,
-  };
+  }
 
-  if (type === "run") {
+  if (type === 'run') {
     activeWorkout.value = {
       ...activeWorkout.value,
       duration: null,
       distance: null,
       pace: null,
       average_pace: null,
-    };
-    return;
+    }
+    return
   }
 
-  activeWorkout.value.exercises = [];
-};
+  activeWorkout.value.exercises = []
+}
 
 const addExercise = () => {
-  // console.log("------->", activeWorkout);
   if (
     activeWorkout.value.exercises.find((e) => e.id === currentExercise.value.id)
   ) {
-    return;
+    return
   }
 
   // get the previous workout's values (eg, what weights were used)
   const lastValues = sortedWorkouts.value
     .filter((sw) => sw.type === activeWorkout.value.type)[0]
-    .exercises.find((ex) => ex.id === currentExercise.value.id);
-
-  console.log(
-    sortedWorkouts.value.filter((sw) => sw.type === activeWorkout.value.type)[0]
-  );
-  // console.log(activeWorkout.value.type);
-  // console.log(currentExercise.value.id);
+    .exercises.find((ex) => ex.id === currentExercise.value.id)
 
   // exercise isn't there, add it to exercises
   activeWorkout.value.exercises.splice(0, 0, {
     id: currentExercise.value.id,
     values: toRaw(lastValues ? lastValues.values : [0, 0, 0]),
-  });
-};
+  })
+}
 
 const navigateExercise = (dir) => {
   // grab the exercise's current index
-  console.log("navigate");
   let exerciseIndex = filteredExercises.value.findIndex(
     (e) => e.id === currentExercise.value.id
-  );
+  )
 
   // navigate and check if bounds are exceeded
-  dir === "prev" ? exerciseIndex-- : exerciseIndex++;
+  dir === 'prev' ? exerciseIndex-- : exerciseIndex++
   if (exerciseIndex < 0 || exerciseIndex >= filteredExercises.value.length) {
-    return;
+    return
   }
 
-  currentExercise.value = filteredExercises.value[exerciseIndex];
-  addExercise();
-};
+  currentExercise.value = filteredExercises.value[exerciseIndex]
+  addExercise()
+}
 
 const completeWorkout = () => {
-  activeWorkout.value.endDate = new Date().toString();
-  workouts.push(activeWorkout.value);
+  activeWorkout.value.endDate = new Date().toString()
+  workouts.push(activeWorkout.value)
 
-  localStorage.setItem("workouts", JSON.stringify({ workouts: workouts }));
-  activeWorkout.value = undefined;
-};
+  localStorage.setItem('workouts', JSON.stringify({ workouts: workouts }))
+  activeWorkout.value = undefined
+}
 
 const sortedWorkouts = computed(() => {
   return workouts.sort(
     (a: any, b: any) =>
       new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
-  );
-});
+  )
+})
 
 const filteredExercises = computed(() => {
-  return exercises.filter((e) => e.type === activeWorkout.value.type);
-});
+  return exercises.filter((e) => e.type === activeWorkout.value.type)
+})
 
 const activeExercise = computed(() => {
   return activeWorkout.value.exercises.find(
     (ex) => ex.id === currentExercise.value.id
-  ).values;
-});
+  ).values
+})
 
 const confirmComplete = async () => {
   const alert = await alertController.create({
-    header: "Complete this workout session?",
+    header: 'Complete this workout session?',
     buttons: [
-      { text: "Cancel", role: "cancel" },
+      { text: 'Cancel', role: 'cancel' },
       {
-        text: "Complete",
-        role: "confirm",
+        text: 'Complete',
+        role: 'confirm',
         handler() {
-          completeWorkout();
+          completeWorkout()
         },
       },
     ],
-  });
-  await alert.present();
-};
+  })
+  await alert.present()
+}
 
 const confirmDiscard = async () => {
   const alert = await alertController.create({
-    header: "Discard this workout?",
+    header: 'Discard this workout?',
     buttons: [
-      { text: "Cancel", role: "cancel" },
+      { text: 'Cancel', role: 'cancel' },
       {
-        text: "Discard",
-        role: "confirm",
+        text: 'Discard',
+        role: 'confirm',
         handler() {
-          activeWorkout.value = null;
-          activeWorkout.value = undefined;
+          activeWorkout.value = null
+          activeWorkout.value = undefined
         },
       },
     ],
-  });
-  await alert.present();
-};
+  })
+  await alert.present()
+}
 </script>
 
 <style scoped>

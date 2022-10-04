@@ -28,5 +28,5 @@ import {
   IonTitle,
   IonContent,
   IonIcon,
-} from "@ionic/vue";
+} from '@ionic/vue'
 </script>

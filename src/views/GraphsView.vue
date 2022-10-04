@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
 import {
   IonPage,
   IonHeader,
@@ -22,33 +22,33 @@ import {
   IonTitle,
   IonContent,
   IonItem,
-} from "@ionic/vue";
-import { useDateFormat } from "@vueuse/core";
-import { chartconfig, exercises } from "@/data";
-import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
+} from '@ionic/vue'
+import { useDateFormat } from '@vueuse/core'
+import { chartconfig, exercises } from '@/data'
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
 
-const workouts = JSON.parse(localStorage.getItem("workouts")).workouts;
-const weightWorkouts = workouts.filter((w) => w.type === "weights");
+const workouts = JSON.parse(localStorage.getItem('workouts')).workouts
+const weightWorkouts = workouts.filter((w) => w.type === 'weights')
 const chartLabels = weightWorkouts.map(
-  (w: any) => useDateFormat(new Date(w.startDate), "D").value
-);
+  (w: any) => useDateFormat(new Date(w.startDate), 'D').value
+)
 
-let chartData = {};
+let chartData = {}
 weightWorkouts.forEach((wo: any) => {
   const exercises = wo.exercises.map((ex: any) => {
     return {
       id: ex.id,
       value: Math.round(ex.values.reduce((sum: any, w: any) => sum + w) / 3),
-    };
-  });
+    }
+  })
   exercises.forEach((ex: any) => {
     if (!chartData[ex.id]) {
-      chartData[ex.id] = [];
+      chartData[ex.id] = []
     }
-    chartData[ex.id].push(ex.value);
-  });
-});
+    chartData[ex.id].push(ex.value)
+  })
+})
 
 const weightData = Object.keys(chartData).map((k) => {
   return {
@@ -57,15 +57,14 @@ const weightData = Object.keys(chartData).map((k) => {
     data: chartData[k],
     fill: true,
     borderWidth: 2,
-    borderColor: "#3880FF",
-    backgroundColor: "#b0c5e8",
-  };
-});
+    borderColor: '#3880FF',
+    backgroundColor: '#b0c5e8',
+  }
+})
 
 onMounted(() => {
   weightData.forEach((w) => {
-    // console.log(w);
-    const context = document.getElementById(w.id) as HTMLCanvasElement;
+    const context = document.getElementById(w.id) as HTMLCanvasElement
     const config = {
       ...chartconfig,
       data: {
@@ -75,14 +74,14 @@ onMounted(() => {
             label: w.label,
             fill: true,
             borderWidth: 2,
-            borderColor: "#3880FF",
-            backgroundColor: "#b0c5e8",
+            borderColor: '#3880FF',
+            backgroundColor: '#b0c5e8',
             data: w.data,
           },
         ],
       },
-    };
-    new Chart(context, config);
-  });
-});
+    }
+    new Chart(context, config)
+  })
+})
 </script>
