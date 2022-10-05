@@ -4,20 +4,20 @@
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="workouts" href="/tabs/workouts">
-          <ion-icon name="barbell-outline"></ion-icon>
+          <ion-icon name="barbell-outline" />
           <ion-label>Workouts</ion-label>
         </ion-tab-button>
+        <ion-tab-button tab="runs" href="/tabs/runs">
+          <ion-icon name="fitness-outline" />
+          <ion-label>Runs</ion-label>
+        </ion-tab-button>
         <ion-tab-button tab="bodyweight" href="/tabs/bodyweight">
-          <ion-icon name="body-outline"></ion-icon>
+          <ion-icon name="body-outline" />
           <ion-label>Body Weight</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="graphs" href="/tabs/graphs">
-          <ion-icon name="analytics-outline"></ion-icon>
+          <ion-icon name="analytics-outline" />
           <ion-label>Graphs</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="settings" href="/tabs/settings">
-          <ion-icon name="settings-outline"></ion-icon>
-          <ion-label>Settings</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

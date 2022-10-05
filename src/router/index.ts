@@ -31,9 +31,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/GraphsView.vue'),
       },
       {
-        path: 'settings',
-        name: 'settings',
-        component: () => import('@/views/SettingsView.vue'),
+        path: 'runs',
+        name: 'runs',
+        component: () => import('@/views/RunsView.vue'),
       },
     ],
   },

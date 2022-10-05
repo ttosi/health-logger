@@ -2,7 +2,7 @@
   { "id": "dip", "type": "weights", "inputType": "number", "text": "Shoulder Dip" },
   { "id": "cp", "type": "weights", "inputType": "number", "text": "Chest Press" },
   { "id": "sr", "type": "weights", "inputType": "number", "text": "Seated Row" },
-  { "id": "sp", "type": "weights", "inputType": "number", "text": "Seated Press" },
+  { "id": "sp", "type": "weights", "inputType": "number", "text": "Shoulder Press" },
   { "id": "lp", "type": "weights", "inputType": "number", "text": "Lat Pulldown" },
   { "id": "tp", "type": "weights", "inputType": "number", "text": "Tricep Press" },
   { "id": "bc", "type": "weights", "inputType": "number", "text": "Bicep Curl" },

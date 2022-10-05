@@ -15,7 +15,7 @@
         <ion-button size="large" @click="addWeight()">Add Weight</ion-button>
       </div>
     </div>
-    <div class="h-3/6">
+    <div class="h-3/6 border-t-2 border-t-gray-400">
       <ion-content>
         <ion-item
           v-for="(weight, index) in bodyweights"

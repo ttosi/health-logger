@@ -1,0 +1,70 @@
+{
+  "runs": [
+  {
+    "startDate": "Mon Sep 12 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Mon Sep 12 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.75,
+    "duration": "15:23",
+    "pace": "31:34",
+    "average_pace": "12:14"
+  },
+  {
+    "startDate": "Wed Sep 14 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Wed Sep 14 2022 12:35:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.73,
+    "duration": "20:23",
+    "pace": "22:13",
+    "average_pace": "11:19"
+  },
+  {
+    "startDate": "Thu Sep 22 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Thu Sep 22 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.75,
+    "duration": "23:00",
+    "pace": "18:10",
+    "average_pace": "11:19"
+  },
+  {
+    "startDate": "Fri Sep 23 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Fri Sep 23 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.84,
+    "duration": "17:30",
+    "pace": "24:14",
+    "average_pace": "11:32"
+  },
+  {
+    "startDate": "Wed Sep 21 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Wed Sep 21 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.79,
+    "duration": "20:00",
+    "pace": "23:44",
+    "average_pace": "11.06"
+  },
+
+  {
+    "startDate": "Wed Sep 21 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Wed Sep 21 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.70,
+    "duration": "20:00",
+    "pace": "23:44",
+    "average_pace": "11.06"
+  },
+  {
+    "startDate": "Tue Oct 03 2022 12:15:00 GMT-0700 (Pacific Daylight Time)",
+    "endDate": "Tue Oct 03 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
+    "distance": 1.97,
+    "duration": "20:27",
+    "pace": "22:44",
+    "average_pace": "11.53"
+    },
+    {
+      "startDate": "Tue Oct 04 2022 13:04:41 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Oct 04 2022 13:27:19 GMT-0700 (Mountain Standard Time)",
+      "type": "run",
+      "duration": "22:21",
+      "distance": 2.03,
+      "pace": "20:41",
+      "average_pace": "11:06"
+    }
+  ]
+}

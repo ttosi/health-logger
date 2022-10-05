@@ -28,9 +28,6 @@
             @click="newWorkout('core')">
             Core Workout
           </ion-button>
-          <ion-button expand="full" size="large" @click="newWorkout('run')">
-            Run
-          </ion-button>
         </div>
         <div v-else class="w-full m-5">
           <div class="flex justify-center mb-5 text-4xl font-bold uppercase">
@@ -80,16 +77,6 @@
                     </ion-select-option>
                   </ion-select>
                 </div>
-                <div
-                  v-if="currentExercise.inputType === 'duration'"
-                  class="items-center border border-gray-400">
-                  <input
-                    v-model="activeExercise[index]"
-                    v-maska="'##:##'"
-                    class="input p-3 pt-4 w-full text-center text-3xl"
-                    pattern="[0-9]*"
-                    inputmode="numeric" />
-                </div>
               </div>
             </div>
             <div v-show="currentExercise" class="flex mt-5">
@@ -108,44 +95,6 @@
                 @click="navigateExercise('next')">
                 Next
               </ion-button>
-            </div>
-          </div>
-          <div v-else class="col-span-3">
-            <div class="grid grid-cols-2 gap-3 text-center font-normal text-lg">
-              <div>
-                <label>DURATION</label>
-                <input
-                  v-model="activeWorkout.duration"
-                  v-maska="'##:##'"
-                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
-                  pattern="[0-9]*"
-                  inputmode="numeric" />
-              </div>
-              <div>
-                <label>DISTANCE</label>
-                <ion-input
-                  v-model="activeWorkout.distance"
-                  type="number"
-                  class="pb-6 border border-gray-400 text-3xl" />
-              </div>
-              <div>
-                <label>PACE</label>
-                <input
-                  v-model="activeWorkout.pace"
-                  v-maska="'##:##'"
-                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
-                  pattern="[0-9]*"
-                  inputmode="numeric" />
-              </div>
-              <div>
-                <label>AVERAGE PACE</label>
-                <input
-                  v-model="activeWorkout.average_pace"
-                  v-maska="'##:##'"
-                  class="input p-[10px] w-full text-center text-3xl border border-gray-400"
-                  pattern="[0-9]*"
-                  inputmode="numeric" />
-              </div>
             </div>
           </div>
         </div>
@@ -190,7 +139,6 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonInput,
   IonFab,
   IonFabButton,
   IonSelect,
@@ -206,39 +154,27 @@ if (!localStorage.getItem('workouts')) {
   localStorage.setItem('workouts', JSON.stringify(data))
 }
 
+const workouts = reactive(JSON.parse(localStorage.getItem('workouts')).workouts)
 const activeWorkout = ref(null)
 const currentExercise = ref(null)
-const weights = [
-  ...[...Array(20).keys()].map((n) => n * 10),
-  ...[...Array(10).keys()].map((n) => n * 10 + 5),
-].sort((a, b) => a - b)
-const workouts = reactive(JSON.parse(localStorage.getItem('workouts')).workouts)
+const weights = []
+for (let w = 0; w <= 180; w += 5) weights.push(w)
 
-const newWorkout = (type) => {
+const newWorkout = (type: string) => {
   currentExercise.value = undefined
   activeWorkout.value = {
     startDate: new Date().toString(),
     endDate: null,
     type: type,
   }
-
-  if (type === 'run') {
-    activeWorkout.value = {
-      ...activeWorkout.value,
-      duration: null,
-      distance: null,
-      pace: null,
-      average_pace: null,
-    }
-    return
-  }
-
   activeWorkout.value.exercises = []
 }
 
 const addExercise = () => {
   if (
-    activeWorkout.value.exercises.find((e) => e.id === currentExercise.value.id)
+    activeWorkout.value.exercises.find(
+      (e: any) => e.id === currentExercise.value.id
+    )
   ) {
     return
   }

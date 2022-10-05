@@ -29,7 +29,7 @@ import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
 
 const workouts = JSON.parse(localStorage.getItem('workouts')).workouts
-const weightWorkouts = workouts.filter((w) => w.type === 'weights')
+const weightWorkouts = workouts.filter((w: any) => w.type === 'weights')
 const chartLabels = weightWorkouts.map(
   (w: any) => useDateFormat(new Date(w.startDate), 'D').value
 )
@@ -50,11 +50,11 @@ weightWorkouts.forEach((wo: any) => {
   })
 })
 
-const weightData = Object.keys(chartData).map((k) => {
+const weightData = Object.keys(chartData).map((data) => {
   return {
-    label: exercises.find((e) => e.id === k).text,
-    id: k,
-    data: chartData[k],
+    label: exercises.find((ex: any) => ex.id === data).text,
+    id: data,
+    data: chartData[data],
     fill: true,
     borderWidth: 2,
     borderColor: '#3880FF',
@@ -68,7 +68,7 @@ onMounted(() => {
     const config = {
       ...chartconfig,
       data: {
-        labels: chartLabels,
+        labels: chartLabels.slice(0, 30),
         datasets: [
           {
             label: w.label,
@@ -76,7 +76,7 @@ onMounted(() => {
             borderWidth: 2,
             borderColor: '#3880FF',
             backgroundColor: '#b0c5e8',
-            data: w.data,
+            data: w.data.slice(0, 30),
           },
         ],
       },
