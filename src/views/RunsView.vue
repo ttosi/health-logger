@@ -15,7 +15,7 @@
         </ion-fab-button>
       </ion-fab>
     </div>
-    <div class="h-1/3">
+    <div class="h-2/4">
       <div class="flex justify-center items-center h-full">
         <div v-if="!activeRun">
           <ion-button expand="full" size="large" @click="newRun">
@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div class="border-t-gray-600 border-t h-1/3">
+    <div class="border-t-gray-600 border-t h-1/4">
       <ion-content>
         <ion-item v-for="(run, index) in sortedRuns" :key="index">
           <ion-label class="font-thin">
@@ -86,8 +86,8 @@
         </ion-item>
       </ion-content>
     </div>
-    <div class="border-t-gray-600 border-t h-1/3">
-      <canvas id="runsChart" height="190" class="m-3" />
+    <div class="border-t-gray-600 border-t h-1/4">
+      <canvas id="runsChart" height="150" class="m-3" />
     </div>
   </ion-page>
 </template>
@@ -183,9 +183,9 @@ const confirmDiscard = async () => {
 
 const updateChart = () => {
   runsChart.data.labels = runs
-    .map((w) => useDateFormat(new Date(w.date), 'D').value)
+    .map((r) => useDateFormat(new Date(r.startDate), 'D').value)
     .reverse()
-  runsChart.data.datasets[0].data = runs.map((w) => w.distance).reverse()
+  runsChart.data.datasets[0].data = runs.map((r) => r.distance).reverse()
   runsChart.update()
 }
 
