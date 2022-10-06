@@ -1,93 +1,137 @@
 {
   "workouts": [
     {
-      "startDate": "Thu Sep 08 2022 12:03:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Thu Sep 08 2022 12:30:00 GMT-0700 (Pacific Daylight Time)",
+      "startDate": "Tue Oct 04 2022 12:35:43 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Oct 04 2022 13:04:35 GMT-0700 (Mountain Standard Time)",
       "type": "weights",
       "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [90, 95, 90] },
-        { "id": "sr", "values": [110, 110, 100] },
-        { "id": "sp", "values": [60, 60, 50] },
-        { "id": "lp", "values": [110, 100, 100] },
-        { "id": "tp", "values": [120, 125, 120] },
-        { "id": "bc", "values": [70, 65, 60] },
-        { "id": "pf", "values": [80, 80, 80] }
+        {
+          "id": "dip",
+          "values": [
+            60,
+            60,
+            65
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            80,
+            85,
+            80
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            65,
+            60,
+            60
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            110,
+            110
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            95
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            60,
+            60,
+            55
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            125,
+            125,
+            125
+          ]
+        }
       ]
     },
     {
-      "startDate": "Fri Sep 09 2022 12:02:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Fri Sep 09 2022 12:54:00 GMT-0700 (Pacific Daylight Time)",
-      "type": "weights",
+      "startDate": "Fri Sep 29 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Fri Sep 29 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "type": "core",
       "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [95, 95, 90] },
-        { "id": "sr", "values": [110, 110, 100] },
-        { "id": "sp", "values": [50, 50, 50] },
-        { "id": "lp", "values": [110, 100, 100] },
-        { "id": "tp", "values": [130, 125, 120] },
-        { "id": "bc", "values": [65, 65, 60] },
-        { "id": "pf", "values": [80, 75, 75] }
-      ]
-    },
-    {
-      "startDate": "Mon Sep 12 2022 11:55:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Mon Sep 12 2022 12:43:00 GMT-0700 (Pacific Daylight Time)",
-      "type": "weights",
-      "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [100, 100, 95] },
-        { "id": "sr", "values": [115, 115, 110] },
-        { "id": "sp", "values": [50, 55, 50] },
-        { "id": "lp", "values": [115, 115, 110] },
-        { "id": "tp", "values": [125, 135, 130] },
-        { "id": "bc", "values": [70, 65, 60] },
-        { "id": "pf", "values": [80, 90, 85] }
-      ]
-    },
-    {
-      "startDate": "Wed Sep 14 2022 12:07:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Wed Sep 14 2022 12:53:00 GMT-0700 (Pacific Daylight Time)",
-      "type": "weights",
-      "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [100, 100, 95] },
-        { "id": "sr", "values": [115, 115, 110] },
-        { "id": "sp", "values": [55, 55, 50] },
-        { "id": "lp", "values": [115, 115, 110] },
-        { "id": "tp", "values": [135, 135, 130] },
-        { "id": "bc", "values": [70, 70, 60] },
-        { "id": "pf", "values": [90, 90, 90] }
-      ]
-    },
-    {
-      "startDate": "Mon Sep 19 2022 11:47:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Mon Sep 19 2022 12:39:00 GMT-0700 (Pacific Daylight Time)",
-      "type": "weights",
-      "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [100, 100, 95] },
-        { "id": "sr", "values": [115, 110, 110] },
-        { "id": "sp", "values": [55, 55, 50] },
-        { "id": "lp", "values": [115, 115, 110] },
-        { "id": "tp", "values": [135, 135, 130] },
-        { "id": "bc", "values": [70, 70, 60] },
-        { "id": "pf", "values": [70, 70, 70] }
-      ]
-    },
-    {
-      "startDate": "Wed Sep 21 2022 11:59:00 GMT-0700 (Pacific Daylight Time)",
-      "endDate": "Wed Sep 21 2022 12:45:00 GMT-0700 (Pacific Daylight Time)",
-      "type": "weights",
-      "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [100, 100, 100] },
-        { "id": "sr", "values": [115, 115, 110] },
-        { "id": "sp", "values": [55, 55, 55] },
-        { "id": "lp", "values": [115, 115, 115] },
-        { "id": "tp", "values": [135, 135, 135] },
-        { "id": "bc", "values": [70, 65, 60] },
-        { "id": "pf", "values": [75, 75, 75] }
+        {
+          "id": "isu",
+          "values": [
+            20,
+            20,
+            20
+          ]
+        },
+        {
+          "id": "kpu",
+          "values": [
+            15,
+            15,
+            15
+          ]
+        },
+        {
+          "id": "plnk",
+          "values": [
+            "01:00",
+            "01:00",
+            "01:00"
+          ]
+        },
+        {
+          "id": "vuh",
+          "values": [
+            "01:00",
+            "01:00",
+            "01:00"
+          ]
+        },
+        {
+          "id": "pnkx",
+          "values": [
+            "01:00",
+            "01:00",
+            "01:00"
+          ]
+        },
+        {
+          "id": "byc",
+          "values": [
+            "01:00",
+            "01:00",
+            "01:00"
+          ]
+        },
+        {
+          "id": "spl",
+          "values": [
+            "01:00",
+            "01:00",
+            "01:00"
+          ]
+        }
       ]
     },
     {
@@ -95,20 +139,564 @@
       "endDate": "Fri Sep 23 2022 12:37:00 GMT-0700 (Pacific Daylight Time)",
       "type": "weights",
       "exercises": [
-        { "id": "dip", "values": [60, 65, 75] },
-        { "id": "cp", "values": [100, 100, 90] },
-        { "id": "sr", "values": [115, 115, 110] },
-        { "id": "sp", "values": [55, 55, 60] },
-        { "id": "lp", "values": [115, 115, 110] },
-        { "id": "tp", "values": [115, 115, 115] },
-        { "id": "bc", "values": [70, 65, 60] },
-        { "id": "pf", "values": [80, 80, 80] }
-
+        {
+          "id": "dip",
+          "values": [
+            60,
+            50,
+            60
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            90
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            110,
+            110
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            55,
+            60,
+            60
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            130,
+            130,
+            130
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            65,
+            65,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            80,
+            85,
+            80
+          ]
+        }
       ]
     },
     {
-      "startDate": "Fri Sep 29 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
-      "endDate": "Fri Sep 29 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
+      "startDate": "Wed Sep 21 2022 11:59:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Wed Sep 21 2022 12:45:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            55,
+            55,
+            55
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            135,
+            135,
+            135
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            70,
+            65,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            75,
+            75,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Mon Sep 19 2022 11:47:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Mon Sep 19 2022 12:39:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            95
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            110,
+            110
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            55,
+            55,
+            50
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            135,
+            135,
+            130
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            70,
+            70,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            70,
+            70,
+            70
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Wed Sep 14 2022 12:07:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Wed Sep 14 2022 12:53:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            95
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            55,
+            55,
+            50
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            135,
+            135,
+            130
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            70,
+            70,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            90,
+            90,
+            90
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Mon Sep 12 2022 11:55:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Mon Sep 12 2022 12:43:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            95
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            50,
+            55,
+            50
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            110
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            125,
+            135,
+            130
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            70,
+            65,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            80,
+            90,
+            85
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Fri Sep 09 2022 12:02:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Fri Sep 09 2022 12:54:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            95,
+            95,
+            90
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            110,
+            110,
+            100
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            50,
+            50,
+            50
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            110,
+            100,
+            100
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            130,
+            125,
+            120
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            65,
+            65,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            80,
+            75,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Thu Sep 08 2022 12:03:00 GMT-0700 (Pacific Daylight Time)",
+      "endDate": "Thu Sep 08 2022 12:30:00 GMT-0700 (Pacific Daylight Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            65,
+            75
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            90,
+            95,
+            90
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            110,
+            110,
+            100
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            60,
+            60,
+            50
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            110,
+            100,
+            100
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            120,
+            125,
+            120
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            70,
+            65,
+            60
+          ]
+        },
+        {
+          "id": "pf",
+          "values": [
+            80,
+            80,
+            80
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Wed Oct 05 2022 11:49:15 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Wed Oct 05 2022 12:13:20 GMT-0700 (Mountain Standard Time)",
+      "type": "weights",
+      "exercises": [
+        {
+          "id": "dip",
+          "values": [
+            60,
+            60,
+            65
+          ]
+        },
+        {
+          "id": "bc",
+          "values": [
+            65,
+            60,
+            60
+          ]
+        },
+        {
+          "id": "tp",
+          "values": [
+            125,
+            125,
+            125
+          ]
+        },
+        {
+          "id": "lp",
+          "values": [
+            115,
+            115,
+            115
+          ]
+        },
+        {
+          "id": "sp",
+          "values": [
+            60,
+            60,
+            55
+          ]
+        },
+        {
+          "id": "sr",
+          "values": [
+            115,
+            110,
+            110
+          ]
+        },
+        {
+          "id": "cp",
+          "values": [
+            100,
+            100,
+            95
+          ]
+        }
+      ]
+    },
+    {
+      "startDate": "Tue Oct 04 2022 12:33:46 GMT-0700 (Mountain Standard Time)",
+      "endDate": "Tue Oct 04 2022 12:58:10 GMT-0700 (Mountain Standard Time)",
       "type": "core",
       "exercises": [
         { "id": "isu", "values": [20, 20, 20] },

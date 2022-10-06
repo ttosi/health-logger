@@ -71,15 +71,21 @@
       <ion-content>
         <ion-item v-for="(run, index) in sortedRuns" :key="index">
           <ion-label class="font-thin">
-            <div class="text-left w-full justify-between flex">
+            <div class="flex justify-between text-xs">
               <div>
-                <span class="font-semibold uppercase">ran</span>
-                {{ run.distance }} miles for
-                {{ run.duration.substring(0, 2) }}
-                minutes
+                <span class="font-semibold">{{ run.distance }}</span>
+                mi for
+                <span class="font-semibold">
+                  {{ run.duration.substr(0, 2) }}
+                </span>
+                mins, pace
+                <span class="font-semibold">
+                  {{ run.average_pace.substr(0, 2) }}
+                </span>
+                mpm
               </div>
               <div>
-                {{ useTimeAgo(new Date(run.endDate)).value }}
+                {{ useTimeAgo(run.startDate).value }}
               </div>
             </div>
           </ion-label>
