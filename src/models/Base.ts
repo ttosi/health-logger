@@ -1,8 +1,9 @@
-export default interface Base {
+type Base = {
   startDate: string
   endDate?: string
-  type: string
 }
+
+export { Base }
 
 // const workouts: Array<Workout> = [
 //   ...reactive(JSON.parse(localStorage.getItem('workouts')).workouts),

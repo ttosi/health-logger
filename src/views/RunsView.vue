@@ -70,18 +70,14 @@
     <div class="border-t-gray-600 border-t h-1/4">
       <ion-content>
         <ion-item v-for="(run, index) in sortedRuns" :key="index">
-          <ion-label class="font-thin">
-            <div class="flex justify-between text-xs">
+          <ion-label class="font-thin" @click="modal.show(run)">
+            <div class="flex justify-between">
               <div>
-                <span class="font-semibold">{{ run.distance }}</span>
+                {{ run.distance }}
                 mi for
-                <span class="font-semibold">
-                  {{ run.duration.substr(0, 2) }}
-                </span>
-                mins, pace
-                <span class="font-semibold">
-                  {{ run.average_pace.substr(0, 2) }}
-                </span>
+                {{ run.duration.substr(0, 2) }}
+                min at
+                {{ run.average_pace.substr(0, 2) }}
                 mpm
               </div>
               <div>
@@ -95,6 +91,71 @@
     <div class="border-t-gray-600 border-t h-1/4">
       <canvas id="runsChart" height="150" class="m-3" />
     </div>
+    <ion-modal ref="modalRef" trigger="open-modal">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button color="danger" @click="modal.delete()">
+              Delete
+            </ion-button>
+          </ion-buttons>
+          <ion-title class="font-semibold text-center">Run Details</ion-title>
+          <ion-buttons slot="end">
+            <ion-button :strong="true" @click="modal.close()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="col-span-3">
+          <div class="text-center text-3xl font-bold my-4">
+            Run
+            {{
+              useDateFormat(new Date(modal.data.startDate), 'MM/DD/YYYY').value
+            }}
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-center font-normal text-lg">
+            <div>
+              <label>DISTANCE</label>
+              <ion-input
+                v-model="modal.data.distance"
+                type="number"
+                readonly
+                class="pb-6 border border-gray-400 text-3xl" />
+            </div>
+            <div>
+              <label>DURATION</label>
+              <input
+                v-model="modal.data.duration"
+                v-maska="'##:##'"
+                class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                pattern="[0-9]*"
+                readonly
+                inputmode="numeric" />
+            </div>
+            <div>
+              <label>PACE</label>
+              <input
+                v-model="modal.data.pace"
+                v-maska="'##:##'"
+                class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                pattern="[0-9]*"
+                readonly
+                inputmode="numeric" />
+            </div>
+            <div>
+              <label>AVERAGE PACE</label>
+              <input
+                v-model="modal.data.average_pace"
+                v-maska="'##:##'"
+                class="input p-[10px] w-full text-center text-3xl border border-gray-400"
+                pattern="[0-9]*"
+                readonly
+                inputmode="numeric" />
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-modal>
   </ion-page>
 </template>
 
@@ -109,40 +170,43 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonButtons,
   IonInput,
   IonFab,
   IonFabButton,
   IonIcon,
+  IonModal,
 } from '@ionic/vue'
 import { computed } from '@vue/reactivity'
 import { useDateFormat, useTimeAgo } from '@vueuse/core'
+import { Run } from '@/models'
 import { alertController } from '@ionic/core'
-import { Chart, registerables } from 'chart.js'
 import { runs as data } from '@/data'
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
 
 if (!localStorage.getItem('runs')) {
   localStorage.setItem('runs', JSON.stringify(data))
 }
 
-Chart.register(...registerables)
-let runsChart
 const runs = reactive(JSON.parse(localStorage.getItem('runs')).runs)
-const activeRun = ref(null)
+const activeRun = ref<Run>()
 
 const newRun = () => {
-  activeRun.value = {
+  const run: Run = {
     startDate: new Date().toString(),
-    endDate: null,
   }
+
+  activeRun.value = run
 }
 
 const completeRun = () => {
   activeRun.value.endDate = new Date().toString()
-  runs.push(activeRun.value)
-
-  localStorage.setItem('runs', JSON.stringify({ runs: runs }))
+  runs.unshift(activeRun.value)
   activeRun.value = undefined
+
   updateChart()
+  localStorage.setItem('runs', JSON.stringify({ runs: runs }))
 }
 
 const sortedRuns = computed(() => {
@@ -178,7 +242,6 @@ const confirmDiscard = async () => {
         text: 'Discard',
         role: 'confirm',
         handler() {
-          activeRun.value = null
           activeRun.value = undefined
         },
       },
@@ -187,6 +250,7 @@ const confirmDiscard = async () => {
   await alert.present()
 }
 
+let runsChart = undefined
 const updateChart = () => {
   runsChart.data.labels = runs
     .map((r) => useDateFormat(new Date(r.startDate), 'D').value)
@@ -195,7 +259,26 @@ const updateChart = () => {
   runsChart.update()
 }
 
+const modalRef = ref()
+const modal = {
+  data: runs[0] as Run,
+  el: undefined,
+  show(run: Run) {
+    this.data = run
+    this.el.present()
+  },
+  delete() {
+    this.el.dismiss()
+    this.data = undefined
+  },
+  close() {
+    this.el.dismiss()
+  },
+}
+
 onMounted(() => {
+  modal.el = modalRef.value.$el
+
   const chartContext = document.getElementById('runsChart') as HTMLCanvasElement
   runsChart = new Chart(chartContext, {
     type: 'line',

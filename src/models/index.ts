@@ -1,3 +1,5 @@
-import Workout from './Workout'
+import { Workout } from './Workout'
+import { Exercise } from './Exercise'
+import { Run } from './Run'
 
-export { Workout }
+export { Workout, Exercise, Run }

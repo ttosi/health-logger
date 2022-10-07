@@ -1,6 +1,11 @@
-import Base from './Base'
-import Exercise from './Exercise'
+import { Base } from './Base'
+import { Exercise } from './'
 
-export default interface Workout extends Base {
-  exercises: Array<Exercise>
+type WorkoutType = 'weights' | 'core'
+
+type Workout = Base & {
+  type: WorkoutType
+  exercises?: Array<Exercise>
 }
+
+export { Workout }
