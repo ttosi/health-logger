@@ -1,10 +1,21 @@
-import { Base } from './Base'
+// import { TimedInterface } from './Runnable'
+import { Timed } from './Runnable'
 
-type Run = Base & {
-  distance?: number
-  duration?: string
-  pace?: string
-  average_pace?: string
+// class Run extends Saveable, Runnable {
+//   constructor(public startDate: string, public endDate?: string) {
+//     super()
+//   }
+// }
+
+class Run extends Timed {
+  constructor(
+    public distance?: string,
+    public duration?: string,
+    public pace?: string,
+    public average_pace?: string
+  ) {
+    super()
+  }
 }
 
 export { Run }

@@ -23,6 +23,7 @@
           </ion-button>
         </div>
         <div v-else class="w-full m-5">
+          {{ activeRun }}
           <div class="flex justify-center mb-5 text-3xl font-bold uppercase">
             Running
           </div>
@@ -193,15 +194,24 @@ const runs = reactive(JSON.parse(localStorage.getItem('runs')).runs)
 const activeRun = ref<Run>()
 
 const newRun = () => {
-  const run: Run = {
-    startDate: new Date().toString(),
-  }
+  // const run: Run = new Run('dsf')
+  // run.start()
+
+  // console.log(run)
+  // console.log(run.startDate)
+
+  const run: Run = new Run()
+  run.start()
 
   activeRun.value = run
+  console.log(activeRun.value)
 }
 
 const completeRun = () => {
-  activeRun.value.endDate = new Date().toString()
+  // activeRun.value.endDate = new Date().toString()
+  activeRun.value.finish(activeRun.value)
+  console.log(activeRun.value)
+
   runs.unshift(activeRun.value)
   activeRun.value = undefined
 
