@@ -55,8 +55,19 @@
             </div>
             <div
               v-if="currentExercise"
-              class="w-full text-center my-2 text-2xl font-semibold">
-              {{ currentExercise.text }}
+              class="w-full text-center my-2 text-2xl font-semibold flex justify-between">
+              <div class="mt-2">{{ currentExercise.text }}</div>
+              <div v-if="currentExercise.inputType === 'duration'" class="flex">
+                <div>
+                  <ion-button
+                    size="default"
+                    @click="toggleTimer"
+                    :color="timerInstance === 0 ? 'primary' : 'danger'">
+                    {{ timerInstance === 0 ? 'START' : 'STOP' }}
+                  </ion-button>
+                </div>
+                <div class="font-normal mt-2 ml-2">{{ timer }}</div>
+              </div>
             </div>
             <div
               v-if="activeWorkout.exercises.length > 0"
@@ -76,6 +87,14 @@
                       {{ weight }}
                     </ion-select-option>
                   </ion-select>
+                </div>
+                <div v-if="currentExercise.inputType === 'duration'">
+                  <input
+                    v-model="activeExercise[index]"
+                    v-maska="'##:##'"
+                    class="input p-[10px] w-full text-center text-2xl border border-gray-400"
+                    pattern="[0-9]*"
+                    inputmode="numeric" />
                 </div>
               </div>
             </div>
@@ -171,6 +190,12 @@ const newWorkout = (type: string) => {
 }
 
 const addExercise = () => {
+  clearInterval(timerInstance.value)
+  timerInstance.value = 0
+  timer.value = '00:00'
+
+  // don't add if exercise has already
+  // been added to this workout
   if (
     activeWorkout.value.exercises.find(
       (e: any) => e.id === currentExercise.value.id
@@ -179,12 +204,13 @@ const addExercise = () => {
     return
   }
 
-  // get the previous workout's values (eg, what weights were used)
+  // get the previous workout's values
+  // (e.g., what weights were used last)
+  // and add to current workout
   const lastValues = sortedWorkouts.value
     .filter((sw) => sw.type === activeWorkout.value.type)[0]
     .exercises.find((ex) => ex.id === currentExercise.value.id)
 
-  // exercise isn't there, add it to exercises
   activeWorkout.value.exercises.splice(0, 0, {
     id: currentExercise.value.id,
     values: toRaw(lastValues ? lastValues.values : [0, 0, 0]),
@@ -205,6 +231,26 @@ const navigateExercise = (dir) => {
 
   currentExercise.value = filteredExercises.value[exerciseIndex]
   addExercise()
+}
+
+const timerInstance = ref(0)
+const timer = ref('00:00')
+const toggleTimer = () => {
+  let seconds = 0
+  if (timerInstance.value !== 0) {
+    clearInterval(timerInstance.value)
+    timerInstance.value = 0
+    return
+  }
+
+  timerInstance.value = setInterval(() => {
+    seconds++
+    timer.value = `${Math.floor(seconds / 60)
+      .toString()
+      .padStart(2, '0')}:${(seconds - Math.floor(seconds / 60) * 60)
+      .toString()
+      .padStart(2, '0')}`
+  }, 1000)
 }
 
 const completeWorkout = () => {
