@@ -62,6 +62,7 @@
                   <ion-button
                     size="default"
                     @click="toggleTimer"
+                    class="mb-2"
                     :color="timerInstance === 0 ? 'primary' : 'danger'">
                     {{ timerInstance === 0 ? 'START' : 'STOP' }}
                   </ion-button>

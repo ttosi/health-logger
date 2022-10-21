@@ -1,5 +1,5 @@
 import { BaseClass } from './BaseInterface'
-import { Run } from './Run'
+// import { Run } from './Run'
 
 interface SaveableInterface extends BaseClass {
   get(): void
@@ -14,26 +14,34 @@ interface TimedInterface extends BaseClass {
 }
 
 abstract class Timed implements TimedInterface, SaveableInterface {
-  public startDate?: string
+  public startDate: string
   public endDate?: string
 
   start(): void {
-    console.log('start')
     this.startDate = new Date().toString()
   }
-  finish(run: Run): void {
+  finish(): void {
     this.endDate = new Date().toString()
-    console.log('finish', run)
   }
   get(): void {
     console.log('get')
-    // this.startDate = new Date().toString()
   }
   save(): void {
     console.log('save')
-    // this.endDate = new Date().toString()
   }
 }
+
+class Run extends Timed {
+  public duration: number
+  public distance: number
+}
+
+const run = new Run()
+run.start()
+setTimeout(() => {
+  run.finish()
+  console.log(run)
+}, 7250)
 
 // abstract class Saveable
 

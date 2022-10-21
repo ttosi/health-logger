@@ -75,11 +75,9 @@
             <div class="flex justify-between">
               <div>
                 {{ run.distance }}
-                mi for
+                miles for
                 {{ run.duration.substr(0, 2) }}
-                min at
-                {{ run.average_pace.substr(0, 2) }}
-                mpm
+                minutes
               </div>
               <div>
                 {{ useTimeAgo(run.startDate).value }}
